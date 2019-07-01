@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateType: 0
   player: {fileID: 0}
-  jumpH: 1.5
+  jumpH: 2
 --- !u!114 &731473885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,7 +1076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateType: 0
   player: {fileID: 0}
-  jumpH: 1.5
+  jumpH: 2
   doubleJump: {fileID: 0}
 --- !u!114 &731473886
 MonoBehaviour:
@@ -1107,12 +1107,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 0}
-  playerStates: []
-  height: 2
-  width: 1
+  playerStates:
+  - {fileID: 731473886}
+  - {fileID: 731473885}
+  - {fileID: 731473884}
+  - {fileID: 731473883}
+  height: 0.8
+  width: 0.8
   speed: 4
   G: 20
-  rayY: 3
+  rayY: 5
   rayX: 5
   flip: 0
   spriteRenderer: {fileID: 0}
