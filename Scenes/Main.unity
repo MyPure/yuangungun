@@ -726,7 +726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb31521db660b9142b35daa5ce736a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 731473882}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1043,7 +1042,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 731473882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e518a0f9aebc6b4abfdbfa8dc8ef247, type: 3}
+  m_Script: {fileID: 11500000, guid: 83591929a8da9a14088e1a23f40d2f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stateType: 0
@@ -1057,13 +1056,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 731473882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9422d5eefe613d144ab1755e1a0fa385, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fb987622c835b847ac73eb42ec986fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stateType: 0
   player: {fileID: 0}
-  jumpH: 2
-  doubleJump: {fileID: 0}
+  jumpH: 1.5
 --- !u!114 &731473885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,12 +1071,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 731473882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0598693fd2b4b334b8fe2f7f2c820e78, type: 3}
+  m_Script: {fileID: 11500000, guid: 90535ff9351f8db45aa64f6a549414c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stateType: 0
   player: {fileID: 0}
-  velocity: 0
+  jumpH: 1.5
   doubleJump: {fileID: 0}
 --- !u!114 &731473886
 MonoBehaviour:
@@ -1089,12 +1087,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 731473882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd0f455c4b055c04294546086a4608cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 5764007dd2b560b4ea1c51386ea22193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stateType: 0
   player: {fileID: 0}
-  jumpH: 2
+  velocity: 0
+  doubleJump: {fileID: 0}
 --- !u!114 &731473888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1104,20 +1103,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 731473882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b2fb0e80edd780448ce784691dedbab, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d0c9b8d710142441abb535b7ce2635a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 0}
-  playerStates:
-  - {fileID: 731473883}
-  - {fileID: 731473884}
-  - {fileID: 731473885}
-  - {fileID: 731473886}
-  height: 0.8
-  width: 0.8
+  playerStates: []
+  height: 2
+  width: 1
   speed: 4
   G: 20
-  rayY: 5
+  rayY: 3
   rayX: 5
   flip: 0
   spriteRenderer: {fileID: 0}
@@ -1890,13 +1885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fae48d66956ad4408310e7731e740eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tcamera: {fileID: 519420031}
-  sprites:
-  - {fileID: 235758750}
-  - {fileID: 1743837753}
-  - {fileID: 2013372835}
-  factor: {x: -0.8, y: 0}
-  offset: 0.24
 --- !u!4 &1305490275
 Transform:
   m_ObjectHideFlags: 0
