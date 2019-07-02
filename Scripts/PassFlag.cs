@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableItem : MonoBehaviour
+public class PassFlag : MonoBehaviour
 {
-    public enum Type {
-        coin
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
-    public Type type;
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            Destroy(gameObject);
+
         }
     }
 }
