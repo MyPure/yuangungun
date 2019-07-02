@@ -2,24 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassFlag : MonoBehaviour
+public class ModeBtn : MonoBehaviour
 {
+    public GameObject levelPanel;
     public GameManager gameManager;
-    public GameObject passLevelUI;
+
     private void Start()
     {
+
         if (!gameManager)
         {
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void ClassicBtn()
     {
-        if (collision.tag == "Player")
+        if (gameManager.passLevel == 0)
         {
-            Instantiate(passLevelUI);
-            gameManager.passLevel++;
-            collision.gameObject.SetActive(false);
+            gameManager.nowLevel = 0;
+            gameManager.LoadLevel(0);
+        }
+        else
+        {
+            Instantiate(levelPanel);
         }
     }
 }
