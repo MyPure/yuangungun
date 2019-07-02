@@ -54,7 +54,6 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.flipX = flip;
         }
-        Debug.Log(currentState);
     }
 
   
