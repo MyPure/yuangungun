@@ -1115,7 +1115,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886824815}
-  m_Text: "\u7A7A\u683C"
+  m_Text: "\u7A7A\u683C\u8DF3\u8DC3"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -4412,7 +4412,7 @@ PrefabInstance:
     - target: {fileID: 4524394963724548091, guid: ebddb31b01cdb0247bd8ecb9e005976e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.613
+      value: -1.477
       objectReference: {fileID: 0}
     - target: {fileID: 4524394963724548091, guid: ebddb31b01cdb0247bd8ecb9e005976e,
         type: 3}
@@ -4459,5 +4459,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5675412880964241134, guid: ebddb31b01cdb0247bd8ecb9e005976e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1fdf6ddf2a9606a43b77d4393a342018, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebddb31b01cdb0247bd8ecb9e005976e, type: 3}

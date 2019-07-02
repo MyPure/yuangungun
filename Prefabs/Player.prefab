@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: 4524394963724548036}
   - {fileID: 4524394963724548037}
   - {fileID: 4524394963724548034}
-  height: 0.8
+  height: 0.9
   width: 0.8
   speed: 4
   G: 20
@@ -193,14 +193,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2457976, y: 1.5025}
+    oldSize: {x: 0.8305318, y: 1.0016667}
     newSize: {x: 0.73, y: 0.73}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.8, y: 0.9}
   m_EdgeRadius: 0
 --- !u!50 &731473887
 Rigidbody2D:
