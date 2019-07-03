@@ -92,8 +92,10 @@ public class Player : MonoBehaviour
     IEnumerator InstantiateDeathUI()
     {
         float time = 0;
-        time += Time.deltaTime;
-        if (time <= 1.0f) yield return null;
+        while (time <= 1.0f) { 
+            time += Time.deltaTime;
+             yield return null;
+        }
         Instantiate(deathUI);
     }
 }
