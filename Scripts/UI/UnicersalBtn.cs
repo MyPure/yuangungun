@@ -20,4 +20,8 @@ public class UnicersalBtn : MonoBehaviour
     {
         gameManager.LoadLevel(++gameManager.nowLevel);
     }
+    public void TryAgain()
+    {
+        gameManager.TryAgain();
+    }
 }

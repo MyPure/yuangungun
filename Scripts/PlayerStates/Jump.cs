@@ -67,6 +67,8 @@ public class Jump : PlayerState
                 }
             }
         }
+
+        player.verticalVelocity = velocity;
     }
     public override void HandleInput()
     {

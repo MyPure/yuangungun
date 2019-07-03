@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b5205881fd1b2449c925a08f2bf05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelPanel: {fileID: 6941509410085924825, guid: c38dda0f1d14a624e9205cd1fb2746f8,
+  levelPanel: {fileID: 7940575898033885136, guid: 42d9df398aecaf7489f9ee929e5d3f7c,
     type: 3}
   gameManager: {fileID: 0}
 --- !u!1 &219447514
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passLevel: 0
   nowLevel: 0
-  LevelPanel: {fileID: 6941509410085924825, guid: c38dda0f1d14a624e9205cd1fb2746f8,
+  LevelPanel: {fileID: 7940575898033885136, guid: 42d9df398aecaf7489f9ee929e5d3f7c,
     type: 3}
 --- !u!4 &950885808
 Transform:

@@ -117,6 +117,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   deathAnimation: {fileID: 7444650583408443159, guid: 12a31883eea06984ca84c90be511ba7f,
     type: 3}
+  deathUI: {fileID: 7688234840252850367, guid: b7cd5d6819c96ae4b8cea70f72cc348b, type: 3}
+  currentVelocity: 0
+  verticalVelocity: 0
+  horizontalVelocity: 0
   death: 0
 --- !u!114 &4524394963724548039
 MonoBehaviour:

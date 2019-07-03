@@ -16,7 +16,13 @@ public class Player : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Animator animator;
     public GameObject deathAnimation;
-
+    public GameObject deathUI;
+    //[HideInInspector]
+    public float currentVelocity;
+    //[HideInInspector]
+    public float verticalVelocity;
+    //[HideInInspector]
+    public float horizontalVelocity;
     /// <summary>
     /// 状态在第一次运行或切换时调用
     /// </summary>
@@ -57,6 +63,13 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.flipX = flip;
         }
+
+        horizontalVelocity = Input.GetAxis("Horizontal");
+        if (currentState.stateType == StateType.Stand)
+        {
+            verticalVelocity = 0;
+        }
+        currentVelocity = Mathf.Sqrt(speed * speed * horizontalVelocity * horizontalVelocity + verticalVelocity * verticalVelocity);
     }
 
   
@@ -74,5 +87,13 @@ public class Player : MonoBehaviour
             Destroy(item);
         }
         Instantiate(deathAnimation, transform.position,transform.rotation);
+        StartCoroutine(InstantiateDeathUI());
+    }
+    IEnumerator InstantiateDeathUI()
+    {
+        float time = 0;
+        time += Time.deltaTime;
+        if (time <= 1.0f) yield return null;
+        Instantiate(deathUI);
     }
 }

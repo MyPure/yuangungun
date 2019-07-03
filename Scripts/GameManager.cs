@@ -28,6 +28,22 @@ public class GameManager : MonoBehaviour
     public void BackToChooseLevel()
     {
         SceneManager.LoadScene("StartScene");
-        Instantiate(LevelPanel);
+        StartCoroutine(InstantiateLevelPanel());
+    }
+    IEnumerator InstantiateLevelPanel()
+    {
+        yield return null;
+        if (passLevel == 0)
+        {
+            SceneManager.LoadScene("StartScene");
+        }
+        else
+        {
+            Instantiate(LevelPanel);
+        }
+    }
+    public void TryAgain()
+    {
+        LoadLevel(nowLevel);
     }
 }

@@ -38,7 +38,7 @@ public class Drop : PlayerState
             ChangeStateTo(StateType.DoubleJump);//Drop -> DoubleJump
             return;
         }
-        
+        player.verticalVelocity = velocity;
     }
     public override void HandleInput()
     {

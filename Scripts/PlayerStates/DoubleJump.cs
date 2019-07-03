@@ -57,6 +57,8 @@ public class DoubleJump : PlayerState
                 }
             }
         }
+
+        player.verticalVelocity = velocity;
     }
     public override void SetType()
     {
