@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public bool flip;//true = 朝右
     public SpriteRenderer spriteRenderer;
     public Animator animator;
+    public GameObject deathAnimation;
 
     /// <summary>
     /// 状态在第一次运行或切换时调用
@@ -72,5 +73,6 @@ public class Player : MonoBehaviour
         {
             Destroy(item);
         }
+        Instantiate(deathAnimation, transform.position,transform.rotation);
     }
 }

@@ -114,6 +114,9 @@ MonoBehaviour:
   rayX: 5
   flip: 0
   spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  deathAnimation: {fileID: 7444650583408443159, guid: 12a31883eea06984ca84c90be511ba7f,
+    type: 3}
   death: 0
 --- !u!114 &4524394963724548039
 MonoBehaviour:
