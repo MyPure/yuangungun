@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 3254738955880703794}
   - component: {fileID: 3254738955880703795}
   - component: {fileID: 3254738955880703792}
-  - component: {fileID: 3254738955880703820}
-  - component: {fileID: 6387724171409872248}
+  - component: {fileID: 8810115004735757131}
   m_Layer: 0
   m_Name: FallSplike (1)
   m_TagString: Untagged
@@ -93,7 +92,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -123,33 +122,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &3254738955880703820
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254738955880703793}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.35}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.29}
-    newSize: {x: 1.28, y: 1.29}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.29}
-  m_EdgeRadius: 0
---- !u!114 &6387724171409872248
+--- !u!114 &8810115004735757131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,12 +131,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3254738955880703793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c7cf0daf94eefa48b6630dffaa0b423, type: 3}
+  m_Script: {fileID: 11500000, guid: 86b718435d27cfb4399e94da1cb04430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerEnter: 0
-  visible: 0
-  speed: 0.5
 --- !u!1 &3254738956082969143
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,8 +146,7 @@ GameObject:
   - component: {fileID: 3254738956082969136}
   - component: {fileID: 3254738956082969137}
   - component: {fileID: 3254738956082969142}
-  - component: {fileID: 3254738956082969138}
-  - component: {fileID: 5318389446590759691}
+  - component: {fileID: 7050975734894039329}
   m_Layer: 0
   m_Name: FallSplike (3)
   m_TagString: Untagged
@@ -257,7 +226,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -287,33 +256,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &3254738956082969138
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254738956082969143}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.35}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.29}
-    newSize: {x: 1.28, y: 1.29}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.29}
-  m_EdgeRadius: 0
---- !u!114 &5318389446590759691
+--- !u!114 &7050975734894039329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -322,12 +265,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3254738956082969143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c7cf0daf94eefa48b6630dffaa0b423, type: 3}
+  m_Script: {fileID: 11500000, guid: 86b718435d27cfb4399e94da1cb04430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerEnter: 0
-  visible: 0
-  speed: 0.5
 --- !u!1 &3254738956337993232
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,8 +280,7 @@ GameObject:
   - component: {fileID: 3254738956337993261}
   - component: {fileID: 3254738956337993234}
   - component: {fileID: 3254738956337993235}
-  - component: {fileID: 3254738956337993263}
-  - component: {fileID: 3254738956337993262}
+  - component: {fileID: 1170250806540781006}
   m_Layer: 0
   m_Name: FallSplike (2)
   m_TagString: Untagged
@@ -421,7 +360,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -451,33 +390,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &3254738956337993263
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254738956337993232}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.35}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.29}
-    newSize: {x: 1.28, y: 1.29}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.29}
-  m_EdgeRadius: 0
---- !u!114 &3254738956337993262
+--- !u!114 &1170250806540781006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -486,12 +399,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3254738956337993232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c7cf0daf94eefa48b6630dffaa0b423, type: 3}
+  m_Script: {fileID: 11500000, guid: 86b718435d27cfb4399e94da1cb04430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerEnter: 0
-  visible: 0
-  speed: 0.5
 --- !u!1 &3254738956956181182
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,13 +411,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3254738956956181176}
+  - component: {fileID: 3692745878272306184}
+  - component: {fileID: 2592350741664578863}
   m_Layer: 0
   m_Name: FallTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3254738956956181176
 Transform:
   m_ObjectHideFlags: 0
@@ -526,6 +438,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3692745878272306184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3254738956956181182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c7cf0daf94eefa48b6630dffaa0b423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splikes:
+  - {fileID: 3254738957753673863}
+  - {fileID: 3254738955880703793}
+  - {fileID: 3254738956337993232}
+  - {fileID: 3254738956082969143}
+  speed: 0.2
+--- !u!61 &2592350741664578863
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3254738956956181182}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &3254738957753673863
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,8 +494,7 @@ GameObject:
   - component: {fileID: 3254738957753673856}
   - component: {fileID: 3254738957753673857}
   - component: {fileID: 3254738957753673862}
-  - component: {fileID: 3254738957753673858}
-  - component: {fileID: 5334608617962684729}
+  - component: {fileID: 672683801196864932}
   m_Layer: 0
   m_Name: FallSplike
   m_TagString: Untagged
@@ -619,7 +574,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -649,33 +604,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &3254738957753673858
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254738957753673863}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.35}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.29}
-    newSize: {x: 1.28, y: 1.29}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.29}
-  m_EdgeRadius: 0
---- !u!114 &5334608617962684729
+--- !u!114 &672683801196864932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -684,9 +613,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3254738957753673863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c7cf0daf94eefa48b6630dffaa0b423, type: 3}
+  m_Script: {fileID: 11500000, guid: 86b718435d27cfb4399e94da1cb04430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerEnter: 0
-  visible: 0
-  speed: 0.5

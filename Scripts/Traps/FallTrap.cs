@@ -4,27 +4,37 @@ using UnityEngine;
 
 public class FallTrap : MonoBehaviour
 {
+    public float interal;
+    public GameObject[] splikes;
+    public bool[] ids;
     private bool playerEnter=false;
-    public bool visible;
     public float speed;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        visible = true;
+        StartCoroutine(StartFall());
         playerEnter = true;
     }
     private void Update()
     {
         if (playerEnter == true)
         {
-            transform.Translate(Vector2.down * speed);
+            for (int i = 0; i < splikes.Length; i++)
+            {
+                if(ids[i])
+                splikes[i].transform.Translate(Vector2.down * speed);
+            }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    IEnumerator StartFall()
     {
-        if (collision.gameObject.tag == "Player")
+        for (int i = 0; i < ids.Length; i++)
         {
-            collision.gameObject.GetComponent<Player>().Die();
+            ids[i] = true;
+            yield return new WaitForSeconds(interal);
         }
+        
     }
+    
 }
