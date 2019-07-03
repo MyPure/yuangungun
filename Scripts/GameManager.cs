@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public int passLevel;
     public int nowLevel;
     public GameObject LevelPanel;
+    public GameObject PausePanel;
     public static bool first = true;
+    bool pause = false;
     private void Start()
     {
         if (first)
@@ -21,6 +23,15 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Update()
+    {
+        if(!pause && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("StartScene") && Input.GetKeyDown(KeyCode.Escape))
+        {
+            GamePause();
+        }
+    }
+
     public void LoadLevel(int level)
     {
         SceneManager.LoadScene("Level " + level);
@@ -45,5 +56,18 @@ public class GameManager : MonoBehaviour
     public void TryAgain()
     {
         LoadLevel(nowLevel);
+    }
+
+    public void GamePause()
+    {
+        Time.timeScale = 0;
+        Instantiate(PausePanel);
+        pause = true;
+    }
+    public void Continue()
+    {
+        Time.timeScale = 1;
+        
+        pause = false;
     }
 }

@@ -24,4 +24,18 @@ public class UnicersalBtn : MonoBehaviour
     {
         gameManager.TryAgain();
     }
+
+    public void Continue()
+    {
+        gameManager.Continue();
+    }
+    public void DestrouCanvas()
+    {
+        Transform g = gameObject.transform;
+        while (g.GetComponent<Canvas>() == null)
+        {
+            g = g.transform.parent;
+        }
+        Destroy(g.gameObject);
+    }
 }
