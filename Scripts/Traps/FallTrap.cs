@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FallTrap : MonoBehaviour
 {
-    public bool playerEnter=false;
+    private bool playerEnter=false;
     public bool visible;
     public float speed;
 
@@ -18,6 +18,13 @@ public class FallTrap : MonoBehaviour
         if (playerEnter == true)
         {
             transform.Translate(Vector2.down * speed);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Player>().Die();
         }
     }
 }
