@@ -14,12 +14,15 @@ public class Player : MonoBehaviour
     public int rayX = 5;//水平方向发射的射线数量
     public bool flip;//true = 朝右
     public SpriteRenderer spriteRenderer;
+    public Animator animator;
 
     /// <summary>
     /// 状态在第一次运行或切换时调用
     /// </summary>
     private void Start()
-    {
+    { 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         foreach(PlayerState state in playerStates)
         {
             //进行状态默认设置
@@ -33,7 +36,6 @@ public class Player : MonoBehaviour
         }
         flip = false;
         currentState.StateStart();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public bool death;//是否死亡
     /// <summary>
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
             currentState.StateUpdate();
         }
 
-        if(!death && transform.position.y < - 15)
+        if(!death && transform.position.y < - 30)
         {
             Die();
         }

@@ -14,6 +14,7 @@ public class Jump : PlayerState
     {
         doubleJump = GetComponent<DoubleJump>();
         velocity = Mathf.Sqrt(2 * player.G * jumpH);//v = √2gh
+        player.animator.Play("Jump", -1, 0);
     }
     public override void StateUpdate()
     {

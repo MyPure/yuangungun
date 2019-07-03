@@ -18,8 +18,8 @@ public class PassFlag : MonoBehaviour
         if (collision.tag == "Player")
         {
             Instantiate(passLevelUI);
-            gameManager.passLevel++;
             collision.gameObject.SetActive(false);
+            gameManager.passLevel++;
         }
     }
 }

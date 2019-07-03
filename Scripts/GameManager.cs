@@ -8,9 +8,18 @@ public class GameManager : MonoBehaviour
     public int passLevel;
     public int nowLevel;
     public GameObject LevelPanel;
+    public static bool first = true;
     private void Start()
     {
+        if (first)
+        {
             DontDestroyOnLoad(gameObject);
+            first = false;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     public void LoadLevel(int level)
     {

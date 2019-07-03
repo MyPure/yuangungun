@@ -22,6 +22,14 @@ public class Stand : PlayerState
     public override void StateUpdate()
     {
         HandleInput();//检测输入
+        if (Input.GetAxis("Horizontal") == 0)
+        {
+            player.animator.Play("Idle");
+        }
+        else
+        {
+            player.animator.Play("Walk");
+        }
         List<RaycastHit2D> hits = new List<RaycastHit2D>();
         for (int i = 0; i < player.rayY; i++)
         {

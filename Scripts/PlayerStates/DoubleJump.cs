@@ -13,6 +13,7 @@ public class DoubleJump : PlayerState
     public override void StateStart()
     {
         velocity = Mathf.Sqrt(2 * player.G * jumpH);//v = √2gh
+        player.animator.Play("Jump", -1, 0);
     }
     public override void StateUpdate()
     {
