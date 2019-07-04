@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject PausePanel;
     public static bool first = true;
     bool pause = false;
+    public bool savePoint;
+    public Vector3 savePointPosition;
     private void Awake()
     {
         if (first)
@@ -59,6 +61,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void NextLevel()
+    {
+        savePoint = false;
+        LoadLevel(++nowLevel);
+    }
+
     public void LoadLevel(int level)
     {
         SceneManager.LoadScene("Level " + level);
@@ -67,6 +75,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
         StartCoroutine(InstantiateLevelPanel());
+        savePoint = false;
     }
     IEnumerator InstantiateLevelPanel()
     {
@@ -83,6 +92,17 @@ public class GameManager : MonoBehaviour
     public void TryAgain()
     {
         LoadLevel(nowLevel);
+        if (savePoint)
+        {
+            StartCoroutine(ToSavePoint());
+        }
+    }
+    IEnumerator ToSavePoint()
+    {
+        yield return null;
+        GameObject camera = GameObject.Find("Main Camera");
+        GameObject.Find("Player").transform.position = savePointPosition;
+        camera.transform.position = savePointPosition + new Vector3(0,0,-10) + (Vector3)camera.GetComponent<CameraFollow>().preset;
     }
 
     public void GamePause()

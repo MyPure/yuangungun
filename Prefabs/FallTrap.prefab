@@ -450,11 +450,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7cf0daf94eefa48b6630dffaa0b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interal: 0
   splikes:
   - {fileID: 3254738957753673863}
   - {fileID: 3254738955880703793}
   - {fileID: 3254738956337993232}
   - {fileID: 3254738956082969143}
+  ids: 
   speed: 0.2
 --- !u!61 &2592350741664578863
 BoxCollider2D:
