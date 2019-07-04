@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 public class GameManager : MonoBehaviour
 {
     public int passLevel;
@@ -11,7 +12,9 @@ public class GameManager : MonoBehaviour
     public GameObject PausePanel;
     public static bool first = true;
     bool pause = false;
-    private void Start()
+    public bool savePoint;
+    public Vector3 savePointPosition;
+    private void Awake()
     {
         if (first)
         {
@@ -21,6 +24,32 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        //读档
+        if (File.Exists(Application.persistentDataPath + "/save/save.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/save/save.dat", FileMode.Open);
+            Save save = (Save)bf.Deserialize(file);
+            file.Close();
+
+            LoadSave(save);
+        }
+        else
+        {
+            Save save = new Save(true);
+            BinaryFormatter bf = new BinaryFormatter();
+            if (!Directory.Exists(Application.persistentDataPath + "/save"))
+            {
+                Directory.CreateDirectory(Application.persistentDataPath + "/save");
+            }
+            FileStream file = File.Create(Application.persistentDataPath + "/save/save.dat");
+            bf.Serialize(file, save);
+            file.Close();
+
+            LoadSave(save);
+            Debug.Log("未找到存档文件，已创建空存档");
         }
     }
 
@@ -32,6 +61,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void NextLevel()
+    {
+        savePoint = false;
+        LoadLevel(++nowLevel);
+    }
+
     public void LoadLevel(int level)
     {
         SceneManager.LoadScene("Level " + level);
@@ -40,6 +75,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
         StartCoroutine(InstantiateLevelPanel());
+        savePoint = false;
     }
     IEnumerator InstantiateLevelPanel()
     {
@@ -56,6 +92,17 @@ public class GameManager : MonoBehaviour
     public void TryAgain()
     {
         LoadLevel(nowLevel);
+        if (savePoint)
+        {
+            StartCoroutine(ToSavePoint());
+        }
+    }
+    IEnumerator ToSavePoint()
+    {
+        yield return null;
+        GameObject camera = GameObject.Find("Main Camera");
+        GameObject.Find("Player").transform.position = savePointPosition;
+        camera.transform.position = savePointPosition + new Vector3(0,0,-10) + (Vector3)camera.GetComponent<CameraFollow>().preset;
     }
 
     public void GamePause()
@@ -69,5 +116,38 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         
         pause = false;
+    }
+
+    //存档功能
+    Save CreateSave()
+    {
+        Save save = new Save();
+        save.passLevel = passLevel;
+        return save;
+    }
+
+    public void SaveGame()
+    {
+        Save save = CreateSave();
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/save/save.dat");
+        bf.Serialize(file, save);
+        file.Close();
+    }
+
+    void LoadSave(Save save)
+    {
+        passLevel = save.passLevel;
+    }
+
+    public void ClearSave()
+    {
+        Save save = new Save(true);//生成空存档类
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/save/save.dat");
+        bf.Serialize(file, save);
+        file.Close();
+
+        LoadSave(save);
     }
 }

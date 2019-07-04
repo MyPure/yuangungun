@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassFlag : MonoBehaviour
+public class SavePoint : MonoBehaviour
 {
+    public GameObject saved;
     public GameManager gameManager;
-    public GameObject passLevelUI;
     private void Start()
     {
         if (!gameManager)
@@ -17,10 +17,13 @@ public class PassFlag : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Instantiate(passLevelUI);
-            collision.gameObject.SetActive(false);
-            gameManager.passLevel++;
-            gameManager.SaveGame();
+            gameManager.savePoint = true;
+            gameManager.savePointPosition = transform.position;
+            Active();
         }
+    }
+    public void Active()
+    {
+        saved.SetActive(true);
     }
 }

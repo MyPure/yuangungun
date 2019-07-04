@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     public GameObject target;//要跟随的物体
     Player player;
-    Vector2 preset;//初始偏移量
+    public Vector2 preset;//初始偏移量
     void Start()
     {
         player = target.GetComponent<Player>();
