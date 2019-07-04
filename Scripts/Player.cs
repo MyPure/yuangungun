@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
         float time = 0;
         while (time <= 1.0f) { 
             time += Time.deltaTime;
-             yield return null;
+            yield return null;
         }
         Instantiate(deathUI);
     }

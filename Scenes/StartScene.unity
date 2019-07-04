@@ -499,6 +499,8 @@ MonoBehaviour:
   nowLevel: 0
   LevelPanel: {fileID: 7940575898033885136, guid: 42d9df398aecaf7489f9ee929e5d3f7c,
     type: 3}
+  PausePanel: {fileID: 4152374677269084369, guid: 8653cb0599cc8e24eb44fb1b4e97d2bf,
+    type: 3}
 --- !u!4 &950885808
 Transform:
   m_ObjectHideFlags: 0
