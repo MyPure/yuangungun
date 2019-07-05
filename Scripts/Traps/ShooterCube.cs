@@ -5,43 +5,59 @@ using UnityEngine.UI;
 
 public class ShooterCube : MonoBehaviour
 {
-
+    private bool startTiming = false;
+    private float timer=0;
+    public bool hit = false;
+    private Vector3 originPos;
     public Slider slider;
     private Camera myCamera;
     public Canvas canvas;
     public Rigidbody2D bulletRigid;
     public float force;
-    private float index = -0.02f;
+    [SerializeField]private float index = 0.005f;
     [SerializeField]private bool isPlayerEnter = false;
     [SerializeField] private bool hasShot = false;
     private void Shoot()
     {
-        if (isPlayerEnter && Input.GetKey(KeyCode.E))
+        //重新开始
+        if (isPlayerEnter && hasShot && !hit&&timer>3)
         {
-            Debug.Log(slider.value);
+            startTiming = false;
+            bulletRigid.velocity = Vector2.zero;
+            bulletRigid.transform.position = originPos;
+            hasShot = false;
+        }
+        //蓄力
+        if (!hasShot&&isPlayerEnter && Input.GetKey(KeyCode.E))
+        {
             slider.gameObject.SetActive(true);
-            //SetUIPos(transform.position, slider.GetComponent<RectTransform>());
-            Debug.Log(index);
-            if (slider.value == 0 && slider.value == 1)
+            SetUIPos(transform.position, slider.GetComponent<RectTransform>());            
+            if (slider.value == 0 || slider.value == 1)
                 index = -index;
             slider.value += index;
         }
-
+        //发射
         if (Input.GetKeyUp(KeyCode.E))
         {
+            startTiming = true;
             hasShot = true;
-            bulletRigid.AddForce(Vector2.left * force * slider.value);
+            slider.gameObject.SetActive(false);
+            bulletRigid.AddForce(Vector2.right * force * slider.value,ForceMode2D.Impulse);
         }
+        
     }
 
-    private void Replay()
+    private void Timing(bool temp)
     {
-        if (isPlayerEnter)
+        if (temp)
         {
-            
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            timer = 0;
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isPlayerEnter = true;
@@ -50,9 +66,14 @@ public class ShooterCube : MonoBehaviour
     {
         isPlayerEnter = false;
     }
+    private void Start()
+    {
+        originPos = bulletRigid.transform.position;
+    }
     private void Update()
     {
         Shoot();
+        Timing(startTiming);
     }
 
     /// <summary>
