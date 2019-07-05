@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovingCube : MonoBehaviour
 {
-    private bool stop = true;
+    [SerializeField]private bool stop = true;
     public bool trigger=false;
     public bool isElevator;
     public Transform[] wayPoints;
