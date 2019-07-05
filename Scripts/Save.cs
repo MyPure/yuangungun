@@ -12,7 +12,7 @@ public class Save
     {
         passLevel = 0;
 
-        coin = new List<bool>[3];
+        coin = new List<bool>[4];
         for(int i = 0; i < coin.Length; i++)
         {
             coin[i] = new List<bool>();

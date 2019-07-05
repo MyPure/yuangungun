@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         {
             Destroy(item);
         }
-        Instantiate(deathAnimation, transform.position,transform.rotation);
+        Instantiate(deathAnimation, transform.position ,transform.rotation);
         StartCoroutine(InstantiateDeathUI());
     }
     IEnumerator InstantiateDeathUI()

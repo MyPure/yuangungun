@@ -40,6 +40,10 @@ public class UnicersalBtn : MonoBehaviour
     }
     public void CheckSave(GameObject SaveUI)
     {
-
+        Instantiate(SaveUI);
+    }
+    public void ClearSave()
+    {
+        gameManager.ClearSave();
     }
 }

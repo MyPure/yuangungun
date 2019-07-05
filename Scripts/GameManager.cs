@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
                     coin[level - 1].Add(false);
                 }
                 coin[level - 1][0] = false;
+                
             }
             else
             {
@@ -94,9 +95,16 @@ public class GameManager : MonoBehaviour
                 {
                     if (coin[level - 1][i + 1])
                     {
-                        coins[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 166);
+                        coins[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
                         coins[i].GetComponent<Coin>().picked = true;
                     }
+                }
+            }
+            foreach (List<bool> bl in coin)
+            {
+                foreach (bool b in bl)
+                {
+                    Debug.Log(b);
                 }
             }
         }
@@ -105,11 +113,18 @@ public class GameManager : MonoBehaviour
     public void SaveCoin()
     {
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
-        if (nowLevel > 1)
+        if (nowLevel > 0)
         {
             for (int i = 0; i < coins.Length; i++)
             {
                 coin[nowLevel - 1][i + 1] = coins[i].GetComponent<Coin>().picked;
+            }
+        }
+        foreach (List<bool> bl in coin)
+        {
+            foreach (bool b in bl)
+            {
+                Debug.Log(b);
             }
         }
     }
@@ -157,7 +172,6 @@ public class GameManager : MonoBehaviour
     public void Continue()
     {
         Time.timeScale = 1;
-        
         pause = false;
     }
 
@@ -182,6 +196,7 @@ public class GameManager : MonoBehaviour
     void LoadSave(Save save)
     {
         passLevel = save.passLevel;
+        coin = save.coin;
     }
 
     public void ClearSave()

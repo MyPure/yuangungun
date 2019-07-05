@@ -19,7 +19,10 @@ public class PassFlag : MonoBehaviour
         {
             Instantiate(passLevelUI);
             collision.gameObject.SetActive(false);
-            gameManager.passLevel++;
+            if(gameManager.passLevel <= gameManager.nowLevel)
+            {
+                gameManager.passLevel = gameManager.nowLevel + 1;
+            }
             gameManager.SaveCoin();
             gameManager.SaveGame();
         }
