@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 1433653957}
-  bubbletext: {fileID: 1058737785}
+  bubbletext: {fileID: 1818289204}
   text: "\u8FD9\u662F\u5B58\u6863\u70B9"
 --- !u!61 &46340055
 BoxCollider2D:
@@ -908,12 +908,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4524394964184420377}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &731473892 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4524394963724548091, guid: ebddb31b01cdb0247bd8ecb9e005976e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4524394964184420377}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &811997890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,12 +1071,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8031022872361980751, guid: a3c405429ddf5d747bbe371d4505f000,
     type: 3}
   m_PrefabInstance: {fileID: 1246404135}
-  m_PrefabAsset: {fileID: 0}
---- !u!102 &1058737785 stripped
-TextMesh:
-  m_CorrespondingSourceObject: {fileID: 7739091637227040542, guid: 3f793f9a955d74048bc0d654b747f394,
-    type: 3}
-  m_PrefabInstance: {fileID: 7739091636638327143}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1060193392
 GameObject:
@@ -1351,7 +1339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 1433653957}
-  bubbletext: {fileID: 1058737785}
+  bubbletext: {fileID: 1818289204}
   text: "\u7A7A\u683C\u8DF3\u8DC3"
 --- !u!61 &1271397581
 BoxCollider2D:
@@ -1635,7 +1623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 1433653957}
-  bubbletext: {fileID: 1058737785}
+  bubbletext: {fileID: 1818289204}
   text: "\u4E8C\u6BB5\u8DF3"
 --- !u!61 &1363052905
 BoxCollider2D:
@@ -2086,7 +2074,7 @@ Transform:
   - {fileID: 46340053}
   - {fileID: 1823074681}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1708615685
 GameObject:
@@ -4593,6 +4581,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1818289204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7739091637227040528, guid: 3f793f9a955d74048bc0d654b747f394,
+    type: 3}
+  m_PrefabInstance: {fileID: 7739091636638327143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1823074680
 GameObject:
   m_ObjectHideFlags: 0
@@ -4638,7 +4632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 1433653957}
-  bubbletext: {fileID: 1058737785}
+  bubbletext: {fileID: 1818289204}
   text: "\u5C0F\u5FC3\u9677\u9631\uFF01"
 --- !u!61 &1823074683
 BoxCollider2D:
@@ -4953,7 +4947,7 @@ PrefabInstance:
     - target: {fileID: 1610146776860358864, guid: e63e87d39fccb084c8e2821eac298b9f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1610146776860358864, guid: e63e87d39fccb084c8e2821eac298b9f,
         type: 3}
@@ -5022,7 +5016,7 @@ PrefabInstance:
     - target: {fileID: 2886523039744993043, guid: 034d904d6fa5cc947a48267dd18a1e05,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2886523039744993043, guid: 034d904d6fa5cc947a48267dd18a1e05,
         type: 3}
@@ -5115,7 +5109,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 731473892}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7739091637937501090, guid: 3f793f9a955d74048bc0d654b747f394,
         type: 3}
@@ -5125,12 +5119,12 @@ PrefabInstance:
     - target: {fileID: 7739091637937501088, guid: 3f793f9a955d74048bc0d654b747f394,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7739091637937501088, guid: 3f793f9a955d74048bc0d654b747f394,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.477
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7739091637937501088, guid: 3f793f9a955d74048bc0d654b747f394,
         type: 3}
@@ -5160,7 +5154,7 @@ PrefabInstance:
     - target: {fileID: 7739091637937501088, guid: 3f793f9a955d74048bc0d654b747f394,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7739091637937501088, guid: 3f793f9a955d74048bc0d654b747f394,
         type: 3}

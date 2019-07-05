@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     bool pause = false;
     public bool savePoint;
     public Vector3 savePointPosition;
+    public List<bool>[] coin;
     private void Awake()
     {
         if (first)
@@ -70,7 +71,49 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(int level)
     {
         SceneManager.LoadScene("Level " + level);
+        StartCoroutine(CheckCoin(level));
     }
+
+    IEnumerator CheckCoin(int level)
+    {
+        yield return null;
+        GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
+        if (level > 0)
+        {
+            if (coin[level - 1][0])
+            {
+                for(int i = 0; i < coins.Length; i++)
+                {
+                    coin[level - 1].Add(false);
+                }
+                coin[level - 1][0] = false;
+            }
+            else
+            {
+                for(int i = 0; i < coins.Length; i++)
+                {
+                    if (coin[level - 1][i + 1])
+                    {
+                        coins[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 166);
+                        coins[i].GetComponent<Coin>().picked = true;
+                    }
+                }
+            }
+        }
+    }
+
+    public void SaveCoin()
+    {
+        GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
+        if (nowLevel > 1)
+        {
+            for (int i = 0; i < coins.Length; i++)
+            {
+                coin[nowLevel - 1][i + 1] = coins[i].GetComponent<Coin>().picked;
+            }
+        }
+    }
+
     public void BackToChooseLevel()
     {
         SceneManager.LoadScene("StartScene");
@@ -123,6 +166,7 @@ public class GameManager : MonoBehaviour
     {
         Save save = new Save();
         save.passLevel = passLevel;
+        save.coin = coin;
         return save;
     }
 

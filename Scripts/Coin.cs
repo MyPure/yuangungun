@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassFlag : MonoBehaviour
+public class Coin : MonoBehaviour
 {
     public GameManager gameManager;
-    public GameObject passLevelUI;
+    public bool picked = false;
     private void Start()
     {
         if (!gameManager)
@@ -17,11 +17,9 @@ public class PassFlag : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Instantiate(passLevelUI);
-            collision.gameObject.SetActive(false);
-            gameManager.passLevel++;
-            gameManager.SaveCoin();
-            gameManager.SaveGame();
+            picked = true;
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }

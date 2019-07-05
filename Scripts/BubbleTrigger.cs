@@ -5,7 +5,7 @@ using UnityEngine;
 public class BubbleTrigger : MonoBehaviour
 {
     public GameObject bubble;
-    public TextMesh bubbletext;
+    public GameObject bubbletext;
     public string text;
     private void Start()
     {
@@ -16,7 +16,7 @@ public class BubbleTrigger : MonoBehaviour
         if(collision.tag == "Player")
         {
             bubble.SetActive(true);
-            bubbletext.text = text;
+            bubbletext.GetComponent<TextMesh>().text = text;
             bubble.GetComponent<Animator>().Play("气泡_1");
         }
     }

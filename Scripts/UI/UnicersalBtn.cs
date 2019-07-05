@@ -29,7 +29,7 @@ public class UnicersalBtn : MonoBehaviour
     {
         gameManager.Continue();
     }
-    public void DestrouCanvas()
+    public void DestroyCanvas()
     {
         Transform g = gameObject.transform;
         while (g.GetComponent<Canvas>() == null)
@@ -37,5 +37,9 @@ public class UnicersalBtn : MonoBehaviour
             g = g.transform.parent;
         }
         Destroy(g.gameObject);
+    }
+    public void CheckSave(GameObject SaveUI)
+    {
+
     }
 }

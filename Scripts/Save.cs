@@ -6,9 +6,17 @@ using UnityEngine;
 public class Save
 {
     public int passLevel;
+    public List<bool>[] coin;
     public Save() { }
     public Save(bool clear)
     {
         passLevel = 0;
+
+        coin = new List<bool>[3];
+        for(int i = 0; i < coin.Length; i++)
+        {
+            coin[i] = new List<bool>();
+            coin[i].Add(true);
+        }
     }
 }
