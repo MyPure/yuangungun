@@ -5,11 +5,8 @@ using UnityEngine;
 public class GrassCube : MonoBehaviour
 {
     public GameObject targetEffect;
-    private Animator animator;
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
+    public Animator animator;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Player>().currentState.stateType==StateType.Jump)
@@ -18,7 +15,6 @@ public class GrassCube : MonoBehaviour
         }
         else if (collision.GetComponent<Player>().currentState.stateType == StateType.DoubleJump)
         {
-            animator.SetBool("isBomb", true);
             GameObject effect=GameObject.Instantiate(targetEffect, transform.position, Quaternion.identity);
             Destroy(effect, 0.5f);
             Destroy(gameObject);

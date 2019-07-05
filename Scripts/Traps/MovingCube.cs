@@ -11,7 +11,6 @@ public class MovingCube : MonoBehaviour
 
     private void Move()
     {
-        Debug.Log(wayPoints[index].position);
         transform.Translate((wayPoints[index].position-transform.position).normalized * Time.deltaTime * speed);
         if ((transform.position - wayPoints[index].position).magnitude < 0.1f)
         {            
