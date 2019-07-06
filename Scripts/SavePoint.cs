@@ -19,6 +19,7 @@ public class SavePoint : MonoBehaviour
         {
             gameManager.savePoint = true;
             gameManager.savePointPosition = transform.position;
+            gameManager.SaveTempCoin();
             Active();
         }
     }

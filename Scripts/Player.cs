@@ -17,12 +17,14 @@ public class Player : MonoBehaviour
     public Animator animator;
     public GameObject deathAnimation;
     public GameObject deathUI;
-    //[HideInInspector]
+    [HideInInspector]
     public float currentVelocity;
-    //[HideInInspector]
+    [HideInInspector]
     public float verticalVelocity;
-    //[HideInInspector]
+    [HideInInspector]
     public float horizontalVelocity;
+
+    
     /// <summary>
     /// 状态在第一次运行或切换时调用
     /// </summary>
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
         }
         flip = false;
         currentState.StateStart();
+        
     }
     public bool death;//是否死亡
     /// <summary>
@@ -72,7 +75,8 @@ public class Player : MonoBehaviour
         currentVelocity = Mathf.Sqrt(speed * speed * horizontalVelocity * horizontalVelocity + verticalVelocity * verticalVelocity);
     }
 
-  
+    
+
     public void Die()
     {
         death = true;
