@@ -25,6 +25,5 @@ public class ChooseLevelBtn : MonoBehaviour
     public void LoadLevel()
     {
         gameManager.LoadLevel(level);
-        gameManager.nowLevel = level;
     }
 }

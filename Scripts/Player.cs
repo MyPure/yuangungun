@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     public float verticalVelocity;
     [HideInInspector]
     public float horizontalVelocity;
-
+    public bool canMove = true;
     
     /// <summary>
     /// 状态在第一次运行或切换时调用
@@ -67,15 +67,13 @@ public class Player : MonoBehaviour
             spriteRenderer.flipX = flip;
         }
 
-        horizontalVelocity = Input.GetAxis("Horizontal");
+        horizontalVelocity = speed * Input.GetAxis("Horizontal");
         if (currentState.stateType == StateType.Stand)
         {
             verticalVelocity = 0;
         }
-        currentVelocity = Mathf.Sqrt(speed * speed * horizontalVelocity * horizontalVelocity + verticalVelocity * verticalVelocity);
+        currentVelocity = Mathf.Sqrt(horizontalVelocity * horizontalVelocity + verticalVelocity * verticalVelocity);
     }
-
-    
 
     public void Die()
     {
@@ -91,6 +89,7 @@ public class Player : MonoBehaviour
             Destroy(item);
         }
         Instantiate(deathAnimation, transform.position ,transform.rotation);
+        GameObject.Find("FollowCoins").GetComponent<FollowCoins>().DestroyCoins();
         StartCoroutine(InstantiateDeathUI());
     }
     IEnumerator InstantiateDeathUI()

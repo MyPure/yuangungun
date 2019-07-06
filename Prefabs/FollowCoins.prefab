@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b3d4abc25577e4eb3ea37bc0f259a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followCoins: []
   followCoin: {fileID: 8170453418347041230, guid: ae101c6e3b3ed744cb62a99436ab0032,
     type: 3}
   coinPos: {fileID: 0}
+  followCoinsCount: 0
+  particle: {fileID: 5096638534369025837, guid: 21941f9c0404278419d81553eea36b11,
+    type: 3}

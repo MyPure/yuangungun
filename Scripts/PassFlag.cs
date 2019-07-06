@@ -6,6 +6,7 @@ public class PassFlag : MonoBehaviour
 {
     public GameManager gameManager;
     public GameObject passLevelUI;
+    List<GameObject> followCoins;
     private void Start()
     {
         if (!gameManager)
@@ -17,14 +18,64 @@ public class PassFlag : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Instantiate(passLevelUI);
-            collision.gameObject.SetActive(false);
+            StartCoroutine(StartCollection());
+            collision.gameObject.GetComponent<Player>().canMove = false;
             if(gameManager.passLevel <= gameManager.nowLevel)
             {
                 gameManager.passLevel = gameManager.nowLevel + 1;
             }
             gameManager.SaveCoin();
             gameManager.SaveGame();
+        }
+    }
+
+    float time;
+    IEnumerator StartCollection()
+    {
+        GameObject.Find("FollowCoins").GetComponent<FollowCoins>().follow = false;
+        followCoins = GameObject.Find("FollowCoins").GetComponent<FollowCoins>().followCoins;
+        GetComponent<Animator>().Play("Chest_2");
+        int index = 0;
+        if (followCoins.Count > 0)
+        {
+            while (index < followCoins.Count)
+            {
+                time = Time.time;
+                while (Time.time - time < 0.25f)
+                {
+                    yield return null;
+                }
+                if (index == followCoins.Count - 1)
+                {
+                    StartCoroutine(CollectCoin(index++, true));
+                }
+                else
+                {
+                    StartCoroutine(CollectCoin(index++, false));
+                }
+            }
+        }
+        else
+        {
+            Instantiate(passLevelUI);
+        }
+    }
+
+    IEnumerator CollectCoin(int index, bool last)
+    {
+   
+        while (followCoins[index].transform.position != transform.position)
+        {
+            Vector3 dest = transform.position;
+            Vector3 pos = followCoins[index].transform.position;
+            Vector3 dpos = Vector3.MoveTowards(pos, dest, Mathf.Max(0.2f, (pos - dest).magnitude / 2) * 10 * Time.deltaTime);
+            followCoins[index].transform.position = dpos;
+            yield return null;
+        }
+        followCoins[index].GetComponent<SpriteRenderer>().enabled = false;
+        if (last)
+        {
+            Instantiate(passLevelUI);
         }
     }
 }

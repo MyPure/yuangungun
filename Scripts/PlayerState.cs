@@ -51,6 +51,10 @@ public class PlayerState : MonoBehaviour
     }
     public void HorizontalMove()//水平移动，请在HandleInput里调用
     {
+        if (!player.canMove)
+        {
+            return;
+        }
         if (Input.GetAxis("Horizontal") > 0)
         {
             player.flip = false;

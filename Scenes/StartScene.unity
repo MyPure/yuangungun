@@ -529,6 +529,8 @@ MonoBehaviour:
     type: 3}
   savePoint: 0
   savePointPosition: {x: 0, y: 0, z: 0}
+  tempCoin: 
+  followCoinsCount: 0
 --- !u!4 &950885808
 Transform:
   m_ObjectHideFlags: 0

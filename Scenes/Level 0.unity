@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee6afe1b1ba7964383b8e9c4ba0d350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myFontSize: 48
+  playOnce: 0
   bubble: {fileID: 1433653957}
   bubbletext: {fileID: 1818289204}
   text: "\u8FD9\u662F\u5B58\u6863\u70B9"
@@ -1733,6 +1735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee6afe1b1ba7964383b8e9c4ba0d350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myFontSize: 48
+  playOnce: 0
   bubble: {fileID: 1433653957}
   bubbletext: {fileID: 1818289204}
   text: "\u7A7A\u683C\u8DF3\u8DC3"
@@ -2017,6 +2021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee6afe1b1ba7964383b8e9c4ba0d350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myFontSize: 48
+  playOnce: 0
   bubble: {fileID: 1433653957}
   bubbletext: {fileID: 1818289204}
   text: "\u4E8C\u6BB5\u8DF3"
@@ -5438,6 +5444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee6afe1b1ba7964383b8e9c4ba0d350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myFontSize: 48
+  playOnce: 0
   bubble: {fileID: 1433653957}
   bubbletext: {fileID: 1818289204}
   text: "\u5C0F\u5FC3\u9677\u9631\uFF01"

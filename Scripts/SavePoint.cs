@@ -20,8 +20,15 @@ public class SavePoint : MonoBehaviour
             gameManager.savePoint = true;
             gameManager.savePointPosition = transform.position;
             gameManager.SaveTempCoin();
+            StartCoroutine(SFCC());
             Active();
         }
+    }
+
+    IEnumerator SFCC()
+    {
+        yield return null;
+        gameManager.SaveFollowCoinCount();
     }
     public void Active()
     {
