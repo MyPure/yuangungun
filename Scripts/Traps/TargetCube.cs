@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetCube : MonoBehaviour
 {
+    public GameObject tip;
     public ShooterCube shooter;
     public GameObject effect;
     public MovingCube targetTrigger;
@@ -14,6 +15,7 @@ public class TargetCube : MonoBehaviour
             targetTrigger.trigger = true;
             shooter.hit = true;
             GameObject effectGo = GameObject.Instantiate(effect, transform.position, Quaternion.identity);
+            tip.SetActive(true);
             Destroy(effectGo, 1.5f);
             Destroy(gameObject);
         }

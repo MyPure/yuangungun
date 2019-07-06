@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403b5145880a201418df06495b37171a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stop: 1
   trigger: 0
   isElevator: 0
   wayPoints:
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce05bf3115603642ab8d29447b28e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tip: {fileID: 0}
   shooter: {fileID: 0}
   effect: {fileID: 2466818209751761037, guid: a1de2f8ce687e584c89cb55f4c68de14, type: 3}
   targetTrigger: {fileID: 0}

@@ -10,8 +10,8 @@ public class ShooterCube : MonoBehaviour
     public bool hit = false;
     private Vector3 originPos;
     public Slider slider;
-    private Camera myCamera;
     public Canvas canvas;
+    public GameObject bullet;
     public Rigidbody2D bulletRigid;
     public float force;
     [SerializeField]private float index = 0.005f;
@@ -23,9 +23,8 @@ public class ShooterCube : MonoBehaviour
         if (isPlayerEnter && hasShot && !hit&&timer>3)
         {
             startTiming = false;
-            bulletRigid.velocity = Vector2.zero;
-            bulletRigid.transform.position = originPos;
-
+            Destroy(bulletRigid.gameObject);
+            bulletRigid = GameObject.Instantiate(bullet, originPos, Quaternion.identity).GetComponent<Rigidbody2D>();
             hasShot = false;
         }
         //蓄力
@@ -69,7 +68,8 @@ public class ShooterCube : MonoBehaviour
     }
     private void Start()
     {
-        originPos = bulletRigid.transform.position;
+        bulletRigid = bullet.GetComponent<Rigidbody2D>();
+        originPos = bullet.transform.position;
     }
     private void Update()
     {
@@ -85,7 +85,7 @@ public class ShooterCube : MonoBehaviour
     private void SetUIPos(Vector3 point, RectTransform rect)
     {
         Vector2 pos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Camera.main.WorldToScreenPoint(point), myCamera, out pos);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Camera.main.WorldToScreenPoint(point), new Camera(), out pos);
         rect.anchoredPosition = pos;
     }
 }
