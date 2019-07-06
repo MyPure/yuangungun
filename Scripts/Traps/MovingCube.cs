@@ -39,7 +39,8 @@ public class MovingCube : MonoBehaviour
         }
     }
 
-    private void Update()
+    
+    private void LateUpdate()
     {
         if (isElevator) ElevatorMove();
         else Move();

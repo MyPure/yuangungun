@@ -39,7 +39,7 @@ public class CarretCube : MonoBehaviour
             }
             timer += Time.deltaTime;
             effect.SetActive(true);
-            if (timer >= 3)
+            if (timer >= coldTime)
             {
                 Destroy(originCarret);
                 effect.SetActive(false);
