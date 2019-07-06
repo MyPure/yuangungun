@@ -25,6 +25,7 @@ public class ShooterCube : MonoBehaviour
             startTiming = false;
             bulletRigid.velocity = Vector2.zero;
             bulletRigid.transform.position = originPos;
+
             hasShot = false;
         }
         //蓄力
