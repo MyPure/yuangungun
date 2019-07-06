@@ -100,13 +100,13 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            foreach (List<bool> bl in coin)
-            {
-                foreach (bool b in bl)
-                {
-                    Debug.Log(b);
-                }
-            }
+            //foreach (List<bool> bl in coin)
+            //{
+            //    foreach (bool b in bl)
+            //    {
+            //        Debug.Log(b);
+            //    }
+            //}
         }
     }
 

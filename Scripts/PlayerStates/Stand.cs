@@ -7,14 +7,6 @@ public class Stand : PlayerState
     public override void HandleInput()
     {
         HorizontalMove();
-        //if(Input.GetAxis("Horizontal") == 0)
-        //{
-        //    player.animator.Play("idle");
-        //}
-        //else
-        //{
-        //    player.animator.Play("walk");
-        //}
     }
     public override void StateStart()
     {
@@ -44,6 +36,11 @@ public class Stand : PlayerState
             {
                 onGround = true;
                 transform.position = new Vector3(transform.position.x, hits[i].point.y + player.height / 2 + 0.04f, 0);
+                break;
+            }
+            if (hits[i].collider && hits[i].collider.tag == "Airflow")
+            {
+                onGround = true;
                 break;
             }
         }
