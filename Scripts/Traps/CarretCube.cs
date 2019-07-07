@@ -16,12 +16,12 @@ public class CarretCube : MonoBehaviour
     
     private bool isPlayerEnter = false;
     public GameObject player;
-
+    public GameObject carrotUI;
     
 
     private void PullCarret()
     {
-        if (Input.GetKey(KeyCode.Q)&&isPlayerEnter)
+        if (Input.GetKey(KeyCode.Q) && isPlayerEnter)
         {
             if (carret == null)
             {
@@ -31,6 +31,7 @@ public class CarretCube : MonoBehaviour
             effect.SetActive(true);
             if (timer >= coldTime)
             {
+                carrotUI.SetActive(true);
                 tip.SetActive(true);
                 Destroy(originCarret);
                 effect.SetActive(false);

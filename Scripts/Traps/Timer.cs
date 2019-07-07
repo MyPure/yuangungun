@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     public Player player;
-    public bool carrot;
     public float carrotTime;
-
-    public void Initialization(string target)
+    public Image image;
+    private float originTime;
+    private void Start()
     {
-        carrotTime = 60;        
+        originTime = carrotTime;
     }
 
     public void UseCarrot()
@@ -19,6 +20,7 @@ public class Timer : MonoBehaviour
         {
             player.speed = 6;
             carrotTime -= Time.deltaTime;
+            image.fillAmount = carrotTime / originTime;
         }
         else if (Input.GetKeyUp(KeyCode.K))
         {
@@ -27,9 +29,13 @@ public class Timer : MonoBehaviour
     }
     private void Update()
     {
-        if (carrot && carrotTime > 0)
+        if (carrotTime > 0)
         {
             UseCarrot();
+        }
+        else if (carrotTime < 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GrassCube : MonoBehaviour
 {
+    public GameObject coin;
     public bool containCoin;
-    public GameObject coinPrefab;
     public GameObject targetEffect;
     public Animator animator;
 
@@ -18,7 +18,10 @@ public class GrassCube : MonoBehaviour
         else if (collision.GetComponent<Player>().currentState.stateType == StateType.DoubleJump)
         {
             GameObject effect=GameObject.Instantiate(targetEffect, transform.position, Quaternion.identity);
-            GameObject.Instantiate(coinPrefab, transform.position + Vector3.up, Quaternion.identity);
+            if (containCoin)
+            {
+                coin.GetComponent<Animator>().Play("ShowCoin");
+            }
             Destroy(effect, 0.5f);
             Destroy(gameObject);
         }

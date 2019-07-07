@@ -8,11 +8,10 @@ public class ShooterCube : MonoBehaviour
     private bool startTiming = false;
     private float timer=0;
     public bool hit = false;
-    private Vector3 originPos;
+    private Transform originPos;
     public Slider slider;
     public Canvas canvas;
     public GameObject bullet;
-    public Rigidbody2D bulletRigid;
     public float force;
     [SerializeField]private float index = 0.005f;
     [SerializeField]private bool isPlayerEnter = false;
@@ -23,8 +22,8 @@ public class ShooterCube : MonoBehaviour
         if (isPlayerEnter && hasShot && !hit&&timer>3)
         {
             startTiming = false;
-            Destroy(bulletRigid.gameObject);
-            bulletRigid = GameObject.Instantiate(bullet, originPos, Quaternion.identity).GetComponent<Rigidbody2D>();
+            bullet.transform.position = originPos.position;
+            
             hasShot = false;
         }
         //蓄力
@@ -42,7 +41,7 @@ public class ShooterCube : MonoBehaviour
             startTiming = true;
             hasShot = true;
             slider.gameObject.SetActive(false);
-            bulletRigid.AddForce(Vector2.right * force * slider.value,ForceMode2D.Impulse);
+            bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right * force * slider.value,ForceMode2D.Impulse);
         }
         
     }
@@ -67,9 +66,8 @@ public class ShooterCube : MonoBehaviour
         isPlayerEnter = false;
     }
     private void Start()
-    {
-        bulletRigid = bullet.GetComponent<Rigidbody2D>();
-        originPos = bullet.transform.position;
+    {        
+        originPos = bullet.transform;
     }
     private void Update()
     {
