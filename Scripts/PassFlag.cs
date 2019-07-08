@@ -69,7 +69,7 @@ public class PassFlag : MonoBehaviour
             Vector3 dest = transform.position;
             Vector3 pos = followCoins[index].transform.position;
             Vector3 dpos = Vector3.MoveTowards(pos, dest, Mathf.Max(0.2f, (pos - dest).magnitude / 2) * 10 * Time.deltaTime);
-            followCoins[index].transform.position = dpos;
+            transform.Translate(dpos - pos);
             yield return null;
         }
         followCoins[index].GetComponent<SpriteRenderer>().enabled = false;
