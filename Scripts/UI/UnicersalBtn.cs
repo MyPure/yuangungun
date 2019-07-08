@@ -16,6 +16,10 @@ public class UnicersalBtn : MonoBehaviour
     {
         gameManager.BackToChooseLevel();
     }
+    public void BackToMainMenu()
+    {
+        gameManager.BackToMainMenu();
+    }
     public void NextLevel()
     {
         gameManager.NextLevel();
@@ -45,5 +49,9 @@ public class UnicersalBtn : MonoBehaviour
     public void ClearSave()
     {
         gameManager.ClearSave();
+    }
+    public void InstantiateGameObject(GameObject obj)
+    {
+        Instantiate(obj);
     }
 }

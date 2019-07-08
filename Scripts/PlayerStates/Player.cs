@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public float horizontalVelocity;
     public bool canMove = true;
-    
+    public GameManager gameManager;
     /// <summary>
     /// 状态在第一次运行或切换时调用
     /// </summary>
@@ -32,6 +32,10 @@ public class Player : MonoBehaviour
     { 
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        if (!gameManager)
+        {
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        }
         foreach(PlayerState state in playerStates)
         {
             //进行状态默认设置
@@ -91,11 +95,13 @@ public class Player : MonoBehaviour
         Instantiate(deathAnimation, transform.position ,transform.rotation);
         GameObject.Find("FollowCoins").GetComponent<FollowCoins>().DestroyCoins();
         StartCoroutine(InstantiateDeathUI());
+        if (gameManager) gameManager.deathNumber++;
     }
+
     IEnumerator InstantiateDeathUI()
     {
         float time = 0;
-        while (time <= 1.0f) { 
+        while (time <= 1.2f) { 
             time += Time.deltaTime;
             yield return null;
         }

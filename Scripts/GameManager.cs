@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public List<bool>[] coin;
     public List<Coin.PickedType> tempCoin;
     public int followCoinsCount;
+    public int deathNumber;
     private void Awake()
     {
         if (first)
@@ -193,6 +194,11 @@ public class GameManager : MonoBehaviour
             Instantiate(LevelPanel);
         }
     }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
     public void TryAgain()
     {
         LoadLevel(nowLevel);
@@ -227,6 +233,7 @@ public class GameManager : MonoBehaviour
         Save save = new Save();
         save.passLevel = passLevel;
         save.coin = coin;
+        save.deathNumber = deathNumber;
         return save;
     }
 
@@ -243,6 +250,7 @@ public class GameManager : MonoBehaviour
     {
         passLevel = save.passLevel;
         coin = save.coin;
+        deathNumber = save.deathNumber;
     }
 
     public void ClearSave()
