@@ -14,6 +14,6 @@ public class Bubble : MonoBehaviour
     }
     void Update()
     {
-        transform.position = player.transform.position + new Vector3(1, 1, -1);
+        transform.position = player.transform.position + new Vector3(1, 1, 0);
     }
 }

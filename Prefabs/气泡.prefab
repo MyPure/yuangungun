@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4d07bb64855f6e24fb715d6cc97cac59, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,7 +101,7 @@ TextMesh:
   m_FontSize: 48
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 0}
+  m_Font: {fileID: 12800000, guid: 4d07bb64855f6e24fb715d6cc97cac59, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
@@ -172,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_Sprite: {fileID: -5960455285514682560, guid: 4501d72f02e4256478fbc0a60dba6101,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -253,7 +253,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_Sprite: {fileID: 4142634274405959155, guid: 4501d72f02e4256478fbc0a60dba6101,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -400,7 +400,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_Sprite: {fileID: -1789797229542347449, guid: 4501d72f02e4256478fbc0a60dba6101,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
