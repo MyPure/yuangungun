@@ -6,7 +6,7 @@ public class PassFlag : MonoBehaviour
 {
     public GameManager gameManager;
     public GameObject passLevelUI;
-    List<GameObject> followCoins;
+    List<FollowCoin> followCoins;
     private void Start()
     {
         if (!gameManager)
@@ -32,7 +32,6 @@ public class PassFlag : MonoBehaviour
     float time;
     IEnumerator StartCollection()
     {
-        GameObject.Find("FollowCoins").GetComponent<FollowCoins>().follow = false;
         followCoins = GameObject.Find("FollowCoins").GetComponent<FollowCoins>().followCoins;
         GetComponent<Animator>().Play("Chest_2");
         int index = 0;
@@ -63,13 +62,13 @@ public class PassFlag : MonoBehaviour
 
     IEnumerator CollectCoin(int index, bool last)
     {
-   
+        followCoins[index].follow = false;
         while (followCoins[index].transform.position != transform.position)
         {
             Vector3 dest = transform.position;
             Vector3 pos = followCoins[index].transform.position;
             Vector3 dpos = Vector3.MoveTowards(pos, dest, Mathf.Max(0.2f, (pos - dest).magnitude / 2) * 10 * Time.deltaTime);
-            transform.Translate(dpos - pos);
+            followCoins[index].transform.position = dpos;
             yield return null;
         }
         followCoins[index].GetComponent<SpriteRenderer>().enabled = false;

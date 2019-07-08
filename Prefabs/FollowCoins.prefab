@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCoins: []
-  followCoin: {fileID: 8170453418347041230, guid: ae101c6e3b3ed744cb62a99436ab0032,
+  followCoinPrefab: {fileID: 8170453418347041230, guid: ae101c6e3b3ed744cb62a99436ab0032,
     type: 3}
   coinPos: {fileID: 0}
   followCoinsCount: 0

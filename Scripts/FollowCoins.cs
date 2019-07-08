@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class FollowCoins : MonoBehaviour
 {
-    public List<GameObject> followCoins;
-    public GameObject followCoin;//prefab
+    public List<FollowCoin> followCoins;
+    public GameObject followCoinPrefab;//prefab
     public GameObject coinPos;
     public int followCoinsCount;
     public GameObject particle;
-    public bool follow = true;
     void Start()
     {
-        followCoins = new List<GameObject>();
+        followCoins = new List<FollowCoin>();
         if (!coinPos)
         {
             coinPos = GameObject.Find("CoinPosition");
@@ -21,23 +20,25 @@ public class FollowCoins : MonoBehaviour
 
     void Update()
     {
-        if (followCoins.Count > 0 && follow)
+        if (followCoins.Count > 0)
         {
             for (int i = 0; i < followCoins.Count; i++)
             {
-                Vector3 dest = coinPos.transform.position + new Vector3(-0.25f * i, 0, 0);
-                
-                Vector3 pos = followCoins[i].transform.position;
-                Vector3 dpos = Vector3.MoveTowards(pos, dest, (pos - dest).magnitude / 2 * 5 * Time.deltaTime);
-                transform.Translate(dpos - pos);
+                if (followCoins[i].follow)
+                {
+                    Vector3 dest = coinPos.transform.position + new Vector3(-0.25f * i, 0.3f * Mathf.Sin(2 * Time.time + i * 0.5f), 0);
+                    Vector3 pos = followCoins[i].transform.position;
+                    Vector3 dpos = Vector3.MoveTowards(pos, dest, (pos - dest).magnitude / 2 * 5 * Time.deltaTime);
+                    followCoins[i].transform.position = dpos;
+                }
             }
         }
     }
 
     public void AddFollowCoin(Vector3 pos)
     {
-        GameObject c = Instantiate(followCoin, pos, coinPos.transform.rotation,transform);
-        followCoins.Add(c);
+        GameObject c = Instantiate(followCoinPrefab, pos, coinPos.transform.rotation);
+        followCoins.Add(c.GetComponent<FollowCoin>());
     }
 
     float giveTime;
@@ -47,7 +48,7 @@ public class FollowCoins : MonoBehaviour
         giveTime = Time.time;
         for (int i = 0; i < followCoinsCount; i++)
         {
-            while (Time.time - giveTime < 0.25f)
+            while (Time.time - giveTime < 2f / followCoinsCount)
             {
                 yield return null;
             }
@@ -58,10 +59,10 @@ public class FollowCoins : MonoBehaviour
 
     public void DestroyCoins()
     {
-        foreach (GameObject coin in followCoins)
+        foreach (FollowCoin coin in followCoins)
         {
             coin.GetComponent<SpriteRenderer>().enabled = false;
-            Instantiate(particle, coin.transform.position, coin.transform.rotation);
+            Instantiate(particle, coin.transform.position, coin.transform.rotation,transform);
         }
     }
 }
