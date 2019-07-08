@@ -20,7 +20,7 @@ public class GrassCube : MonoBehaviour
             GameObject effect=GameObject.Instantiate(targetEffect, transform.position, Quaternion.identity);
             if (containCoin)
             {
-                coin.GetComponent<Animator>().Play("ShowCoin");
+                //coin.GetComponent<Animator>().Play("ShowCoin");
             }
             Destroy(effect, 0.5f);
             Destroy(gameObject);
