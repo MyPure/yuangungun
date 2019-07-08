@@ -8,7 +8,7 @@ public class ShooterCube : MonoBehaviour
     private bool startTiming = false;
     private float timer=0;
     public bool hit = false;
-    private Transform originPos;
+    private Vector2 originPos;
     public Slider slider;
     public Canvas canvas;
     public GameObject bullet;
@@ -22,9 +22,11 @@ public class ShooterCube : MonoBehaviour
         if (isPlayerEnter && hasShot && !hit&&timer>3)
         {
             startTiming = false;
-            bullet.transform.position = originPos.position;
-            
             hasShot = false;
+            bullet.GetComponent<Rigidbody2D>().angularVelocity = 0;
+            bullet.transform.rotation = Quaternion.identity;
+            bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            bullet.transform.position = originPos;
         }
         //蓄力
         if (!hasShot&&isPlayerEnter && Input.GetKey(KeyCode.E))
@@ -67,7 +69,7 @@ public class ShooterCube : MonoBehaviour
     }
     private void Start()
     {        
-        originPos = bullet.transform;
+        originPos = bullet.transform.position;
     }
     private void Update()
     {

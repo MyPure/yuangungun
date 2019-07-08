@@ -17,6 +17,7 @@ public class TargetCube : MonoBehaviour
             GameObject effectGo = GameObject.Instantiate(effect, transform.position, Quaternion.identity);
             tip.SetActive(true);
             Destroy(effectGo, 1.5f);
+            Destroy(collision.gameObject,1.5f);
             Destroy(gameObject);
         }
     }

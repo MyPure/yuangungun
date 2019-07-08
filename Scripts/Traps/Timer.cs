@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
         {
             player.speed = 6;
             carrotTime -= Time.deltaTime;
-            image.fillAmount = carrotTime / originTime;
+            image.fillAmount = 1-carrotTime / originTime;
         }
         else if (Input.GetKeyUp(KeyCode.K))
         {
