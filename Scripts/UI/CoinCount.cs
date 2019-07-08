@@ -16,9 +16,9 @@ public class CoinCount : MonoBehaviour
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
         picked = 0;
-        for(int i = 0; i < gameManager.coin[level-1].Count; i++)
+        for(int i = 0; i < gameManager.coin[level].Count; i++)
         {
-            if (gameManager.coin[level-1][0])
+            if (gameManager.coin[level][0])
             {
                 text.GetComponent<Text>().text = "尚未探索";
                 return;
@@ -27,13 +27,13 @@ public class CoinCount : MonoBehaviour
             {
                 if(i > 0)
                 {
-                    if (gameManager.coin[level-1][i])
+                    if (gameManager.coin[level][i])
                     {
                         picked++;
                     }
                 }
             }
         }
-        text.GetComponent<Text>().text = $"{picked} / {gameManager.coin[level-1].Count-1}";
+        text.GetComponent<Text>().text = $"{picked} / {gameManager.coin[level].Count-1}";
     }
 }
