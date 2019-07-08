@@ -27,7 +27,7 @@ public class SavePoint : MonoBehaviour
 
     IEnumerator SFCC()
     {
-        yield return null;
+        yield return null;//等一帧再执行
         gameManager.SaveFollowCoinCount();
     }
     public void Active()

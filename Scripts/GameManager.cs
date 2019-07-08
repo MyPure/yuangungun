@@ -83,48 +83,45 @@ public class GameManager : MonoBehaviour
     {
         yield return null;
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
-        if (level > 0)
+        if (coin[level][0])
         {
-            if (coin[level - 1][0])
+            for (int i = 0; i < coins.Length; i++)
             {
-                for(int i = 0; i < coins.Length; i++)
+                coin[level].Add(false);
+                tempCoin.Add(Coin.PickedType.unPicked);
+            }
+            coin[level][0] = false;
+
+        }
+        else
+        {
+            if (savePoint)
+            {
+                for (int i = 0; i < coins.Length; i++)
                 {
-                    coin[level - 1].Add(false);
-                    tempCoin.Add(Coin.PickedType.unPicked);
+                    if (tempCoin[i] == Coin.PickedType.tempPicked)
+                    {
+                        coins[i].GetComponent<SpriteRenderer>().enabled = false;
+                        coins[i].GetComponent<BoxCollider2D>().enabled = false;
+                        coins[i].GetComponent<Coin>().pickedType = Coin.PickedType.tempPicked;
+                    }
+                    else if (tempCoin[i] == Coin.PickedType.picked)
+                    {
+                        coins[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+                        coins[i].GetComponent<Coin>().pickedType = Coin.PickedType.picked;
+                    }
                 }
-                coin[level - 1][0] = false;
-                
+                GameObject.Find("FollowCoins").GetComponent<FollowCoins>().followCoinsCount = followCoinsCount;
+                StartCoroutine(GameObject.Find("FollowCoins").GetComponent<FollowCoins>().GiveFollowCoins(savePointPosition));
             }
             else
             {
-                if (savePoint)
+                for (int i = 0; i < coins.Length; i++)
                 {
-                    for (int i = 0; i < coins.Length; i++)
+                    if (coin[level][i + 1])
                     {
-                        if (tempCoin[i] == Coin.PickedType.tempPicked)
-                        {
-                            coins[i].GetComponent<SpriteRenderer>().enabled = false;
-                            coins[i].GetComponent<BoxCollider2D>().enabled = false;
-                            coins[i].GetComponent<Coin>().pickedType = Coin.PickedType.tempPicked;
-                        }
-                        else if (tempCoin[i] == Coin.PickedType.picked)
-                        {
-                            coins[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-                            coins[i].GetComponent<Coin>().pickedType = Coin.PickedType.picked;
-                        }
-                    }
-                    GameObject.Find("FollowCoins").GetComponent<FollowCoins>().followCoinsCount = followCoinsCount;
-                    StartCoroutine(GameObject.Find("FollowCoins").GetComponent<FollowCoins>().GiveFollowCoins(savePointPosition));
-                }
-                else
-                {
-                    for (int i = 0; i < coins.Length; i++)
-                    {
-                        if (coin[level - 1][i + 1])
-                        {
-                            coins[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-                            coins[i].GetComponent<Coin>().pickedType = Coin.PickedType.picked;
-                        }
+                        coins[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+                        coins[i].GetComponent<Coin>().pickedType = Coin.PickedType.picked;
                     }
                 }
             }
@@ -141,7 +138,7 @@ public class GameManager : MonoBehaviour
             {
                 if (coins[i].GetComponent<Coin>().pickedType == Coin.PickedType.tempPicked || coins[i].GetComponent<Coin>().pickedType == Coin.PickedType.picked)
                 {
-                    coin[nowLevel - 1][i + 1] = true;
+                    coin[nowLevel][i + 1] = true;
                 }
             }
         }
@@ -158,12 +155,9 @@ public class GameManager : MonoBehaviour
     {
         tempCoin.Clear();
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
-        if (nowLevel > 0)
+        for (int i = 0; i < coins.Length; i++)
         {
-            for (int i = 0; i < coins.Length; i++)
-            {
-                tempCoin.Add(coins[i].GetComponent<Coin>().pickedType);
-            }
+            tempCoin.Add(coins[i].GetComponent<Coin>().pickedType);
         }
         foreach (Coin.PickedType b in tempCoin)
         {
