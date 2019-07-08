@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7675826601332790545, guid: 9ccd8d5de8d5bbd4b827fb2881e498f1,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -143,4 +143,3 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   pickedType: 0
   followCoins: {fileID: 0}
-  Particle: {fileID: 0}
