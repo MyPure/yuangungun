@@ -1225,7 +1225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.11, y: 0.18, z: -10}
+  m_LocalPosition: {x: -21.11, y: 0.095, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1245,7 +1245,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1501,7 +1501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669367890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.79, y: 0, z: 0}
+  m_LocalPosition: {x: -12.04, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1664456696}
@@ -2305,7 +2305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305490273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.11, y: 0.18, z: 0}
+  m_LocalPosition: {x: -21.11, y: 0.095, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 235758751}
@@ -2921,7 +2921,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545049746}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.43, y: 0, z: 0}
+  m_LocalPosition: {x: -21.99, y: 0.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1664456696}
@@ -2939,7 +2939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee6afe1b1ba7964383b8e9c4ba0d350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myFontSize: 34
+  myFontSize: 32
   playOnce: 0
   bubble: {fileID: 1433653957}
   bubbletext: {fileID: 1818289204}
@@ -6585,62 +6585,44 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1777201268}
     m_ColliderPaths:
-    - - X: 569998968
-        Y: -60000100
-      - X: 569998968
-        Y: -9999900
-      - X: 289999900
-        Y: -10001032
-      - X: 289998827
-        Y: -49999900
-      - X: 230000100
-        Y: -49999176
-      - X: 229999026
-        Y: -9999900
-      - X: 129999900
-        Y: -10001003
-      - X: 129998968
-        Y: -19999847
-      - X: 129989306
-        Y: -19998952
-      - X: 129985384
+    - - X: 569999971
+        Y: -60000000
+      - X: 569999971
+        Y: -10000000
+      - X: 290000000
+        Y: -10000029
+      - X: 289999971
+        Y: -50000000
+      - X: 230000000
+        Y: -49999971
+      - X: 229999971
         Y: -10000000
       - X: 60000000
-        Y: -10014616
-      - X: 60012254
-        Y: -59999954
-    - - X: 39987165
-        Y: -60000100
-      - X: 39985883
-        Y: -20000100
-      - X: -59999926
-        Y: -20011726
-      - X: -60000772
-        Y: -19999900
-      - X: -240000100
-        Y: -19999988
-      - X: -239999925
-        Y: -60000100
+        Y: -10000029
+      - X: 60000029
+        Y: -60000000
+    - - X: 39999971
+        Y: -60000000
+      - X: 39999971
+        Y: -20000000
+      - X: -240000000
+        Y: -20000029
+      - X: -239999971
+        Y: -60000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 56.999897, y: -0.99999}
-      - {x: 28.99999, y: -1.0001032}
-      - {x: 28.999882, y: -4.99999}
-      - {x: 23.00001, y: -4.9999175}
-      - {x: 22.999903, y: -0.99999}
-      - {x: 12.99999, y: -1.0001003}
-      - {x: 12.999897, y: -1.9999849}
-      - {x: 12.998931, y: -1.9998952}
-      - {x: 12.998539, y: -1}
-      - {x: 6, y: -1.0014616}
-      - {x: 6.0012255, y: -5.999995}
-      - {x: 56.999897, y: -6.00001}
-    - - {x: 3.9985886, y: -2.00001}
-      - {x: -5.999993, y: -2.0011725}
-      - {x: -6.0000772, y: -1.99999}
-      - {x: -24.00001, y: -1.9999988}
-      - {x: -23.999992, y: -6.00001}
-      - {x: 3.9987164, y: -6.00001}
+    - - {x: 57, y: -1}
+      - {x: 29, y: -1.0000029}
+      - {x: 28.999996, y: -5}
+      - {x: 23, y: -4.999997}
+      - {x: 22.999996, y: -1}
+      - {x: 6, y: -1.0000029}
+      - {x: 6.000003, y: -6}
+      - {x: 57, y: -6}
+    - - {x: 3.9999971, y: -2}
+      - {x: -24, y: -2.0000029}
+      - {x: -23.999996, y: -6}
+      - {x: 3.9999971, y: -6}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
 --- !u!50 &1777201270
@@ -7367,7 +7349,7 @@ PrefabInstance:
     - target: {fileID: 4524394963724548091, guid: ebddb31b01cdb0247bd8ecb9e005976e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.377
+      value: -1.462
       objectReference: {fileID: 0}
     - target: {fileID: 4524394963724548091, guid: ebddb31b01cdb0247bd8ecb9e005976e,
         type: 3}

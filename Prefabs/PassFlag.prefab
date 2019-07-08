@@ -124,6 +124,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   passLevelUI: {fileID: 2796571698797117110, guid: 6d38e4d236b50dc4b8849c798ffe9034,
     type: 3}
+  pass: {fileID: 8300000, guid: 0ca6858ad272f1947ae89a18ba22cc50, type: 3}
 --- !u!95 &5623072684530395025
 Animator:
   serializedVersion: 3

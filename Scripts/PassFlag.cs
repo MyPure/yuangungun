@@ -7,6 +7,7 @@ public class PassFlag : MonoBehaviour
     public GameManager gameManager;
     public GameObject passLevelUI;
     List<FollowCoin> followCoins;
+    public AudioClip pass;
     private void Start()
     {
         if (!gameManager)
@@ -57,6 +58,8 @@ public class PassFlag : MonoBehaviour
         else
         {
             Instantiate(passLevelUI);
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = pass;
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
         }
     }
 
@@ -75,6 +78,8 @@ public class PassFlag : MonoBehaviour
         if (last)
         {
             Instantiate(passLevelUI);
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = pass;
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
         }
     }
 }

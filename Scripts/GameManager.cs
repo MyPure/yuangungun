@@ -91,7 +91,6 @@ public class GameManager : MonoBehaviour
                 tempCoin.Add(Coin.PickedType.unPicked);
             }
             coin[level][0] = false;
-
         }
         else
         {
@@ -122,8 +121,16 @@ public class GameManager : MonoBehaviour
                     {
                         coins[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
                         coins[i].GetComponent<Coin>().pickedType = Coin.PickedType.picked;
+
                     }
                 }
+                //foreach (List<bool> bl in coin)
+                //{
+                //    foreach (bool b in bl)
+                //    {
+                //        Debug.Log(b);
+                //    }
+                //}
             }
         }
     }
@@ -132,14 +139,11 @@ public class GameManager : MonoBehaviour
     public void SaveCoin()
     {
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
-        if (nowLevel > 0)
+        for (int i = 0; i < coins.Length; i++)
         {
-            for (int i = 0; i < coins.Length; i++)
+            if (coins[i].GetComponent<Coin>().pickedType == Coin.PickedType.tempPicked || coins[i].GetComponent<Coin>().pickedType == Coin.PickedType.picked)
             {
-                if (coins[i].GetComponent<Coin>().pickedType == Coin.PickedType.tempPicked || coins[i].GetComponent<Coin>().pickedType == Coin.PickedType.picked)
-                {
-                    coin[nowLevel][i + 1] = true;
-                }
+                coin[nowLevel][i + 1] = true;
             }
         }
         //foreach (List<bool> bl in coin)
@@ -159,10 +163,10 @@ public class GameManager : MonoBehaviour
         {
             tempCoin.Add(coins[i].GetComponent<Coin>().pickedType);
         }
-        foreach (Coin.PickedType b in tempCoin)
-        {
-            Debug.Log(b);
-        }
+        //foreach (Coin.PickedType b in tempCoin)
+        //{
+        //    Debug.Log(b);
+        //}
     }
 
     public void SaveFollowCoinCount()
