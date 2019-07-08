@@ -12,7 +12,7 @@ public class GrassCube : MonoBehaviour
     private void ShowCoin()
     {
         coin.transform.position = transform.position + Vector3.up*2;
-        coin.transform.localScale = new Vector3(0.7f,0.7f,1);
+        coin.transform.localScale = new Vector3(0.6f,0.6f,1);
     }
 
 
