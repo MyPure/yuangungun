@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModeBtn : MonoBehaviour
+public class GameStartBtn : MonoBehaviour
 {
     public GameObject levelPanel;
+    public GameObject helpUI;
     public GameManager gameManager;
 
     private void Start()
@@ -15,12 +16,11 @@ public class ModeBtn : MonoBehaviour
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
     }
-    public void ClassicBtn()
+    public void GameStart()
     {
         if (gameManager.passLevel == 0)
         {
-            gameManager.nowLevel = 0;
-            gameManager.LoadLevel(0);
+            Instantiate(helpUI);
         }
         else
         {

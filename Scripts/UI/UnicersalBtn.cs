@@ -54,4 +54,8 @@ public class UnicersalBtn : MonoBehaviour
     {
         Instantiate(obj);
     }
+    public void LoadLevel(int level)
+    {
+        gameManager.LoadLevel(level);
+    }
 }
