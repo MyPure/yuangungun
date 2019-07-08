@@ -13,6 +13,16 @@ public class StarPlatinum : MonoBehaviour
     private float timer = 0;
     private float change = 0.02f;
     private bool hasTimeStopped = false;
+    private float speedScale = 1;
+
+    private void Accelerate()
+    {
+        if (Input.GetKey(KeyCode.K))
+        {
+            speedScale = 1.5f;
+            speed = speed * speedScale;
+        }
+    }
 
     private void TimeStop(bool state)
     {
