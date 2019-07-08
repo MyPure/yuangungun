@@ -58,4 +58,8 @@ public class UnicersalBtn : MonoBehaviour
     {
         gameManager.LoadLevel(level);
     }
+    public void QuitGame()
+    {
+        gameManager.QuitGame();
+    }
 }

@@ -15754,7 +15754,7 @@ MonoBehaviour:
   playOnce: 0
   bubble: {fileID: 1008728832}
   bubbletext: {fileID: 980684108}
-  text: "\u6309K\u6D88\u8017\u841D\u535C\u52A0\u901F"
+  text: "\u6309\u4F4FK\u6D88\u8017\u841D\u535C\u52A0\u901F"
 --- !u!61 &1051929973
 BoxCollider2D:
   m_ObjectHideFlags: 0

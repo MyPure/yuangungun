@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int deathNumber;
     private void Awake()
     {
+        Screen.fullScreen = false;
         if (first)
         {
             DontDestroyOnLoad(gameObject);
@@ -223,6 +224,10 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         pause = false;
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     //存档功能
