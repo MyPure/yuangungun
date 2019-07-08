@@ -11,6 +11,8 @@ public class StarPlatinum : MonoBehaviour
     public Animator[] animators;
     public float speed;
     private float timer = 0;
+    private float change = 0.02f;
+    private bool hasTimeStopped = false;
 
     private void TimeStop(bool state)
     {
@@ -25,6 +27,26 @@ public class StarPlatinum : MonoBehaviour
         for (int i = 0; i < animators.Length; i++)
         {
             animators[i].enabled = state;
+        }
+    }
+
+    private void StopTime()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (hasTimeStopped)
+            {
+                timer = 0;
+            }
+            hasTimeStopped = !hasTimeStopped;
+        }
+    }
+    private void Update()
+    {
+        StopTime();
+        if (hasTimeStopped)
+        {
+            timer += change;
         }
     }
 
