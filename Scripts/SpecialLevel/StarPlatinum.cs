@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StarPlatinum : MonoBehaviour
-{
-    
+{    
     public GameObject player;
     public FlyTrap[] flyTraps;
     public SawTurn[] saws;
@@ -19,7 +18,7 @@ public class StarPlatinum : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.K))
         {
-            speedScale = 1.5f;
+            speedScale = 1.6f;
             speed = speed * speedScale;
         }
     }

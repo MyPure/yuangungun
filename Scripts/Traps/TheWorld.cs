@@ -6,17 +6,22 @@ using UnityEngine.UI;
 
 public class TheWorld : MonoBehaviour
 {
+    //计时器UI
     public GameObject clock;
     public Text clockText;
+
+    //时停持续时间
     public float duration;
+
+    //时停影响的组件
     public SawTurn[] saws;
-    public BoxCollider2D[] boxes;
-    public GameObject effect;
+    public BoxCollider2D[] boxes;    
     public Animator[] animators;
+
     public Animator myAnimation;
-    private bool clockRun = false;
+
+    [SerializeField]private float startTime;        //开启时停的时间
     [SerializeField]private float timer = 0;
-    [SerializeField]private float change = 0;
     [SerializeField]private bool isPlayerEnter = false;
     [SerializeField] private bool hasTimeStopped = false;
 
@@ -39,29 +44,29 @@ public class TheWorld : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        clockRun = false;
-        clock.SetActive(false);
-        change = Time.deltaTime;
-        isPlayerEnter = true;
+        if (!hasTimeStopped)
+        {
+            timer = 0;
+            clock.SetActive(true);
+            clockText.text = Convert.ToString(30.00);
+            isPlayerEnter = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (hasTimeStopped)
+        if (!hasTimeStopped)
         {
-            clockRun = true;
-            clock.SetActive(true);
+            clock.SetActive(false);
         }
-        change = -Time.deltaTime;
         isPlayerEnter = false;
     }
-
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Q) && isPlayerEnter)
         {
-            timer += change;
+            timer += Time.deltaTime;
             myAnimation.SetBool("StopTiming", false);
             myAnimation.SetBool("Timing", true);
         }else if ((Input.GetKeyUp(KeyCode.Q) || !isPlayerEnter) && !hasTimeStopped)
@@ -70,24 +75,25 @@ public class TheWorld : MonoBehaviour
             myAnimation.SetBool("Timing", false);
             myAnimation.SetBool("StopTiming", true);
         }
-
-        if (hasTimeStopped)
+        
+        if (timer > 3 && !hasTimeStopped)
         {
-            if(clockRun) clockText.text = Convert.ToString(duration+timer);
-            timer += change;
-        }
-        if (timer > 3)
-        {            
+            startTime = Time.time;   //获取开始时间
             hasTimeStopped = true;
             TimeStop(false);
             timer = 0;
-        }else if (timer < -duration)
+        }else if (timer > duration)
         {
+            isPlayerEnter = false;
             hasTimeStopped = false;
             clock.SetActive(false);
             TimeStop(true);
-            change = 0;
             timer = 0;
+        }
+        if (hasTimeStopped)
+        {
+            timer = Time.time - startTime;
+            clockText.text = Convert.ToString(duration-timer);
         }
     }
 }
