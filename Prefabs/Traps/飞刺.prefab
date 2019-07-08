@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c937d961fe52e474589984658c768e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isUp: 1
   thorn: {fileID: 1610146776860358867}
   speed: 10
 --- !u!1 &1610146776860358867

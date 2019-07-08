@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.K))
         {
-            player.speed = 6;
+            player.speed = 7;
             carrotTime -= Time.deltaTime;
             image.fillAmount = 1-carrotTime / originTime;
         }
@@ -35,6 +35,7 @@ public class Timer : MonoBehaviour
         }
         else if (carrotTime < 0)
         {
+            player.speed = 4;
             gameObject.SetActive(false);
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FlyTrap : MonoBehaviour
 {
+    public bool isUp;
     public GameObject thorn;
     public float speed;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +20,10 @@ public class FlyTrap : MonoBehaviour
     {
         while (thorn)
         {
+            if(isUp)
             thorn.transform.Translate(Vector3.up * speed * Time.deltaTime);
+            else
+            thorn.transform.Translate(Vector3.down * speed * Time.deltaTime);
             yield return null;
         }
     }

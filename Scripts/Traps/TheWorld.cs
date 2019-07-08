@@ -47,8 +47,12 @@ public class TheWorld : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        clockRun = true;
-        clock.SetActive(true);
+        if (hasTimeStopped)
+        {
+            clockRun = true;
+            clock.SetActive(true);
+        }
+
         change = -0.02f;
         isPlayerEnter = false;
     }
