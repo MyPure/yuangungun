@@ -34,6 +34,7 @@ public class CarretCube : MonoBehaviour
                 carrotUI.SetActive(true);
                 tip.SetActive(true);
                 Destroy(originCarret);
+                gameObject.GetComponent<EdgeCollider2D>().enabled = false;
                 effect.SetActive(false);
             }
         }

@@ -41,7 +41,7 @@ public class TheWorld : MonoBehaviour
     {
         clockRun = false;
         clock.SetActive(false);
-        change = 0.02f;
+        change = Time.deltaTime;
         isPlayerEnter = true;
     }
 
@@ -52,8 +52,7 @@ public class TheWorld : MonoBehaviour
             clockRun = true;
             clock.SetActive(true);
         }
-
-        change = -0.02f;
+        change = -Time.deltaTime;
         isPlayerEnter = false;
     }
 
