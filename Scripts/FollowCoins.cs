@@ -29,7 +29,7 @@ public class FollowCoins : MonoBehaviour
                 
                 Vector3 pos = followCoins[i].transform.position;
                 Vector3 dpos = Vector3.MoveTowards(pos, dest, (pos - dest).magnitude / 2 * 5 * Time.deltaTime);
-                followCoins[i].transform.position = dpos;
+                transform.Translate(dpos - pos);
             }
         }
     }
