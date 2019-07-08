@@ -48,12 +48,12 @@ public class FollowCoins : MonoBehaviour
         giveTime = Time.time;
         for (int i = 0; i < followCoinsCount; i++)
         {
+            AddFollowCoin(pos);
+            giveTime = Time.time;
             while (Time.time - giveTime < 1.5f / followCoinsCount)
             {
                 yield return null;
             }
-            AddFollowCoin(pos);
-            giveTime = Time.time;
         }
     }
 
