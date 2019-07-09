@@ -46,6 +46,10 @@ public class FollowCoins : MonoBehaviour
     {
         yield return null;
         giveTime = Time.time;
+        while (Time.time - giveTime < 0.5f)
+        {
+            yield return null;
+        }       
         for (int i = 0; i < followCoinsCount; i++)
         {
             AddFollowCoin(pos);
