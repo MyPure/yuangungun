@@ -27,7 +27,6 @@ public class GrassCube : MonoBehaviour
             GameObject effect=GameObject.Instantiate(targetEffect, transform.position, Quaternion.identity);
             if (containCoin)
             {
-                Debug.Log(coin.transform.localScale);
                 ShowCoin();
             }
             Destroy(effect, 0.5f);

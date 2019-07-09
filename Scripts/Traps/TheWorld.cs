@@ -10,6 +10,9 @@ public class TheWorld : MonoBehaviour
     public GameObject clock;
     public Text clockText;
 
+    public GameObject tip_1;
+    public GameObject tip_2;
+
     //时停持续时间
     public float duration;
 
@@ -47,6 +50,8 @@ public class TheWorld : MonoBehaviour
         if (!hasTimeStopped)
         {
             timer = 0;
+            tip_1.SetActive(true);
+            tip_2.SetActive(false);
             clock.SetActive(true);
             clockText.text = Convert.ToString(30.00);
             isPlayerEnter = true;
@@ -78,6 +83,8 @@ public class TheWorld : MonoBehaviour
         
         if (timer > 3 && !hasTimeStopped)
         {
+            tip_1.SetActive(false);
+            tip_2.SetActive(true);
             startTime = Time.time;   //获取开始时间
             hasTimeStopped = true;
             TimeStop(false);

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CarretCube : MonoBehaviour
 {
+    public Timer carrotTimer;
     public GameObject tip;
     public GameObject originCarret;
     private GameObject carret;
@@ -32,6 +33,7 @@ public class CarretCube : MonoBehaviour
             if (timer >= coldTime)
             {
                 carrotUI.SetActive(true);
+                carrotTimer.SetOrigin();
                 tip.SetActive(true);
                 Destroy(originCarret);
                 gameObject.GetComponent<EdgeCollider2D>().enabled = false;

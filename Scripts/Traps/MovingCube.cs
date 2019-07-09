@@ -30,9 +30,9 @@ public class MovingCube : MonoBehaviour
         {
             Move();
         }
-    }
+    }    
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    {      
         if (trigger)
         {
             stop = false;
@@ -40,8 +40,9 @@ public class MovingCube : MonoBehaviour
     }
 
     
-    private void LateUpdate()
+    private void Update()
     {
+        Debug.Log(1);
         if (isElevator) ElevatorMove();
         else Move();
     }

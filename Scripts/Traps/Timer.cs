@@ -9,7 +9,8 @@ public class Timer : MonoBehaviour
     public float carrotTime;
     public Image image;
     private float originTime;
-    private void Start()
+
+    public void SetOrigin()
     {
         originTime = carrotTime;
     }
