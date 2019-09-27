@@ -56,9 +56,12 @@ public class Stand : PlayerState
             ChangeStateTo(StateType.Drop);//Stand -> Drop
             return;
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (player.connectType == ConnectType.NotConnecting || player.connectType == ConnectType.ThisConnecting)
         {
-            ChangeStateTo(StateType.Jump);//Stand -> Jump
+            if (Input.GetKey(KeyCode.Space))
+            {
+                ChangeStateTo(StateType.Jump);//Stand -> Jump
+            }
         }
     }
     public override void SetType()

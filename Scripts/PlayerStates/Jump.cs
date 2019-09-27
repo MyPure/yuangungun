@@ -43,12 +43,14 @@ public class Jump : PlayerState
         }
 
         //二段跳判定
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (player.connectType == ConnectType.NotConnecting || player.connectType == ConnectType.ThisConnecting)
         {
-            ChangeStateTo(StateType.DoubleJump);//Jump -> DoubleJump
-            return;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ChangeStateTo(StateType.DoubleJump);//Jump -> DoubleJump
+                return;
+            }
         }
-
         //磕头判定
         if (velocity > 0)//只有上升期才判定
         {

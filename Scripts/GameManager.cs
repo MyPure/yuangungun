@@ -4,6 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+
+public enum ConnectType
+{
+    NotConnecting,
+    ThisConnecting,
+    OtherConnecting
+}
+
 public class GameManager : MonoBehaviour
 {
     public int passLevel;
@@ -65,6 +77,13 @@ public class GameManager : MonoBehaviour
         {
             GamePause();
         }
+
+        #region 局域网联机
+        for (int i = 0; i < msgList.Count; i++)
+        {
+            HandleMessage();
+        }
+        #endregion
     }
 
     public void NextLevel()
@@ -230,6 +249,145 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+
+    #region 局域网联机
+    Socket socket;
+    const int BUFFER_SIZE = 1024;
+    public byte[] readBuff = new byte[BUFFER_SIZE];
+    //玩家列表
+    Dictionary<string, Player> players = new Dictionary<string, Player>();
+    //消息列表
+    List<string> msgList = new List<string>();
+    //Player预设
+    public GameObject prefab;
+    //IP和端口
+    string id;
+
+    public void Connect(Socket socket)
+    {
+        SceneManager.LoadScene("Multiple");
+        this.socket = socket;
+        id = socket.LocalEndPoint.ToString();
+        
+        StartCoroutine( StartConnect() );
+    }
+
+    IEnumerator StartConnect()
+    {
+        yield return null;
+        Addplayer(id, new Vector3(0, 4, 0));
+        players[id].connectType = ConnectType.ThisConnecting;
+        GameObject.Find("Main Camera").GetComponent<CameraFollow>().target = players[id].gameObject;
+        socket.BeginReceive(readBuff, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCb, null);
+    }
+
+    private void ReceiveCb(IAsyncResult ar)
+    {
+        try
+        {
+            int count = socket.EndReceive(ar);
+            string str = Encoding.UTF8.GetString(readBuff, 0, count);
+            msgList.Add(str);
+            socket.BeginReceive(readBuff, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCb, null);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+            socket.Close();
+        }
+    }
+
+    private void Addplayer(string id, Vector3 pos)
+    {
+        Player player = Instantiate(prefab, pos, Quaternion.identity).GetComponent<Player>();
+        Debug.Log(id);
+        player.connectType = ConnectType.OtherConnecting;
+        player.GetComponentInChildren<TextMesh>().text = id;
+        players.Add(id, player);
+    }
+    public void SendPos()
+    {
+        Vector3 pos = players[id].transform.position;
+        string str = $"POS {id} {pos.x.ToString()} {pos.y.ToString()} {pos.z.ToString()} {players[id].currentState.ToString()}";
+        byte[] bytes = Encoding.Default.GetBytes(str);
+        socket.Send(bytes);
+    }
+
+    private void SendLeave()
+    {
+        string str = $"LEAVE {id}";
+        byte[] bytes = Encoding.Default.GetBytes(str);
+        socket.Send(bytes);
+    }
+
+    public void Leave()
+    {
+        SendLeave();
+    }
+
+    
+
+    private void HandleMessage()
+    {
+        if (msgList.Count == 0)
+        {
+            return;
+        }
+        string str = msgList[0];
+        msgList.RemoveAt(0);
+        string[] args = str.Split(' ');
+        if (args[0] == "POS")
+        {
+            OnReceivePos(args[1], args[2], args[3], args[4], args[5]);
+        }
+        else if (args[0] == "LEAVE")
+        {
+            OnReceiveLeave(args[1]);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="xStr"></param>
+    /// <param name="yStr"></param>
+    /// <param name="zStr"></param>
+    public void OnReceivePos(string id, string xStr, string yStr, string zStr, string state)
+    {
+        if (id == this.id)
+        {
+            return;//不对自己操作
+        }
+
+        float x = float.Parse(xStr);
+        float y = float.Parse(yStr);
+        float z = float.Parse(zStr);
+        StateType StateType = PlayerState.Prase(state);
+        if (players.ContainsKey(id))
+        {
+            players[id].transform.position = new Vector3(x, y, z);
+            Debug.Log(id);
+            if (players[id].currentState.stateType != StateType)
+            {
+                players[id].currentState.ChangeStateTo(StateType);
+            }
+        }
+        else
+        {
+            Debug.Log(id);
+            Addplayer(id, new Vector3(0, 4, 0));
+        }
+    }
+
+    public void OnReceiveLeave(string id)
+    {
+        if (players.ContainsKey(id))
+        {
+            Leave();
+        }
+    }
+    #endregion
     //存档功能
     Save CreateSave()
     {

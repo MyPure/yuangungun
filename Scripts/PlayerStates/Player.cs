@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +17,7 @@ public class Player : MonoBehaviour
     public int rayY = 3;//竖直方向发射的射线数量
     public int rayX = 5;//水平方向发射的射线数量
     public bool flip;//true = 朝右
+    public bool death;//是否死亡
     public SpriteRenderer spriteRenderer;
     public Animator animator;
     public GameObject deathAnimation;
@@ -23,8 +28,25 @@ public class Player : MonoBehaviour
     public float verticalVelocity;
     [HideInInspector]
     public float horizontalVelocity;
-    public bool canMove = true;
+    public bool canMove = true;//用于触碰到通关点时停止角色移动
     public GameManager gameManager;
+
+
+    //局域网联机模式
+    #region 局域网联机  
+    public ConnectType connectType = ConnectType.NotConnecting;
+    #endregion
+
+
+
+    private void Awake()
+    {
+        if (!currentState)
+        {
+            Debug.Log(GetComponentInChildren<TextMesh>().text);
+            currentState = GetComponent<Stand>();
+        }
+    }
     /// <summary>
     /// 状态在第一次运行或切换时调用
     /// </summary>
@@ -32,6 +54,7 @@ public class Player : MonoBehaviour
     { 
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
         if (!gameManager)
         {
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -43,15 +66,16 @@ public class Player : MonoBehaviour
             state.SetType();
         }
         //设置默认状态
-        if (!currentState)
-        {
-            currentState = GetComponent<Stand>();
-        }
+        //if (!currentState)
+        //{
+        //    Debug.Log(GetComponentInChildren<TextMesh>().text);
+        //    currentState = GetComponent<Stand>();
+        //}
         flip = false;
         currentState.StateStart();
         
     }
-    public bool death;//是否死亡
+
     /// <summary>
     /// 状态在每帧更新时调用
     /// </summary>
@@ -60,6 +84,10 @@ public class Player : MonoBehaviour
         if (!death)
         {
             currentState.StateUpdate();
+            if(connectType == ConnectType.ThisConnecting)
+            {
+                gameManager.SendPos();
+            }
         }
 
         if(!death && transform.position.y < - 30)
@@ -76,26 +104,30 @@ public class Player : MonoBehaviour
         {
             verticalVelocity = 0;
         }
-        currentVelocity = Mathf.Sqrt(horizontalVelocity * horizontalVelocity + verticalVelocity * verticalVelocity);
+
+        currentVelocity = Mathf.Sqrt(horizontalVelocity * horizontalVelocity + verticalVelocity * verticalVelocity);//与CamareFollow有关
     }
 
     public void Die()
     {
-        death = true;
-        List<Component> comList = new List<Component>();
-        foreach (var component in gameObject.GetComponents<Component>())
+        if (connectType == ConnectType.NotConnecting)
         {
-            if (!(component is Transform || component is Player))
-                comList.Add(component);
+            death = true;
+            List<Component> comList = new List<Component>();
+            foreach (var component in gameObject.GetComponents<Component>())
+            {
+                if (!(component is Transform || component is Player))
+                    comList.Add(component);
+            }
+            foreach (Component item in comList)
+            {
+                Destroy(item);
+            }
+            Instantiate(deathAnimation, transform.position, transform.rotation);
+            GameObject.Find("FollowCoins").GetComponent<FollowCoins>().DestroyCoins();
+            StartCoroutine(InstantiateDeathUI());
+            if (gameManager) gameManager.deathNumber++;
         }
-        foreach (Component item in comList)
-        {
-            Destroy(item);
-        }
-        Instantiate(deathAnimation, transform.position ,transform.rotation);
-        GameObject.Find("FollowCoins").GetComponent<FollowCoins>().DestroyCoins();
-        StartCoroutine(InstantiateDeathUI());
-        if (gameManager) gameManager.deathNumber++;
     }
 
     IEnumerator InstantiateDeathUI()

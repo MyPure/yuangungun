@@ -33,10 +33,13 @@ public class Drop : PlayerState
                 return;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (player.connectType == ConnectType.NotConnecting || player.connectType == ConnectType.ThisConnecting)
         {
-            ChangeStateTo(StateType.DoubleJump);//Drop -> DoubleJump
-            return;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ChangeStateTo(StateType.DoubleJump);//Drop -> DoubleJump
+                return;
+            }
         }
         player.verticalVelocity = velocity;
     }
