@@ -10,7 +10,7 @@ namespace YuangungunServer
 {
     class Conn
     {
-        public const int BUFFER_SIZE = 1024;
+        public const int BUFFER_SIZE = 20480;
 
         //Socket
         public Socket socket;
@@ -20,6 +20,14 @@ namespace YuangungunServer
         public byte[] readBuff = new byte[BUFFER_SIZE];
         public int buffCount = 0;
 
+        //粘包分包
+        public byte[] lenBytes = new byte[sizeof(uint)];
+        public int msgLength = 0;
+
+        //心跳时间
+        public long lastTickTime = long.MinValue;
+
+        public Player player;
         public Conn()
         {
             readBuff = new byte[BUFFER_SIZE];
@@ -30,6 +38,7 @@ namespace YuangungunServer
             socket = _socket;
             isUse = true;
             buffCount = 0;
+            //lastTickTime = Sys
         }
 
         public int BuffRemain()
@@ -49,6 +58,10 @@ namespace YuangungunServer
         public void Close()
         {
             if (!isUse)
+            {
+                return;
+            }
+            if(player != null)
             {
                 return;
             }

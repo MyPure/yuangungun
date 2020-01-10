@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public float G = 20.0f;//角色受到的重力
     public int rayY = 3;//竖直方向发射的射线数量
     public int rayX = 5;//水平方向发射的射线数量
-    public bool flip;//true = 朝右
+    public bool flip;//false = 朝右
     public bool death;//是否死亡
     public SpriteRenderer spriteRenderer;
     public Animator animator;
@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
     {
         if (!currentState)
         {
-            Debug.Log(GetComponentInChildren<TextMesh>().text);
             currentState = GetComponent<Stand>();
         }
     }
@@ -76,6 +75,7 @@ public class Player : MonoBehaviour
         
     }
 
+    int frame = 0;
     /// <summary>
     /// 状态在每帧更新时调用
     /// </summary>
@@ -84,10 +84,6 @@ public class Player : MonoBehaviour
         if (!death)
         {
             currentState.StateUpdate();
-            if(connectType == ConnectType.ThisConnecting)
-            {
-                gameManager.SendPos();
-            }
         }
 
         if(!death && transform.position.y < - 30)
@@ -106,6 +102,21 @@ public class Player : MonoBehaviour
         }
 
         currentVelocity = Mathf.Sqrt(horizontalVelocity * horizontalVelocity + verticalVelocity * verticalVelocity);//与CamareFollow有关
+        if(currentVelocity != 0)
+        {
+            if (connectType == ConnectType.ThisConnecting)
+            {
+                if(currentVelocity != 0)
+                {
+                    frame++;
+                    if(frame % 2 == 0)
+                    {
+                        frame = 0;
+                        gameManager.SendPos();
+                    }
+                }
+            }
+        }
     }
 
     public void Die()
@@ -138,5 +149,10 @@ public class Player : MonoBehaviour
             yield return null;
         }
         Instantiate(deathUI);
+    }
+
+    ~Player()
+    {
+        gameManager.SendLeave();
     }
 }

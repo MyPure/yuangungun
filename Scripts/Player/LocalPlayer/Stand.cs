@@ -14,20 +14,23 @@ public class Stand : PlayerState
     public override void StateUpdate()
     {
         HandleInput();//检测输入
-        if (player.canMove)
+        if (player.connectType == ConnectType.NotConnecting || player.connectType == ConnectType.ThisConnecting)
         {
-            if (Input.GetAxis("Horizontal") == 0)
+            if (player.canMove)
             {
-                player.animator.Play("Idle");
+                if (Input.GetAxis("Horizontal") == 0)
+                {
+                    player.animator.Play("Idle");
+                }
+                else
+                {
+                    player.animator.Play("Walk");
+                }
             }
             else
             {
-                player.animator.Play("Walk");
+                player.animator.Play("Idle");
             }
-        }
-        else
-        {
-            player.animator.Play("Idle");
         }
         List<RaycastHit2D> hits = new List<RaycastHit2D>();
         for (int i = 0; i < player.rayY; i++)

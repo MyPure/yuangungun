@@ -87,7 +87,7 @@ namespace YuangungunServer
                     Conn conn = conns[index];
                     conn.Init(socket);
                     string adr = conn.GetAdress();
-                    Console.WriteLine("客户端连接 [" + adr + "] conn池ID: " + index);
+                    Console.WriteLine("客户端 [" + adr + "] 连接 conn池ID: " + index);
                     conn.socket.BeginReceive(conn.readBuff, conn.buffCount, conn.BuffRemain(), SocketFlags.None, ReceiveCb, conn);
                     listenfd.BeginAccept(AcceptCb, null);
                 }
@@ -101,27 +101,76 @@ namespace YuangungunServer
         private void ReceiveCb(IAsyncResult ar)
         {
             Conn conn = (Conn)ar.AsyncState;
+            lock (conn)
+            {
+                try
+                {
+                    int count = conn.socket.EndReceive(ar);
+                    Console.WriteLine(count);
+                    if (count <= 0)
+                    {
+                        Console.WriteLine("收到 [" + conn.GetAdress() + "] 断开连接");
+                        conn.Close();
+                        return;
+                    }
+                    conn.buffCount += count;
+                    ProcessData(conn);
+
+                    conn.socket.BeginReceive(conn.readBuff, conn.buffCount, conn.BuffRemain(), SocketFlags.None, ReceiveCb, conn);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("[" + conn.GetAdress() + "] " + e.Message);
+                    conn.Close();
+                }
+            }
+        }
+
+        private void ProcessData(Conn conn)
+        {
+            if(conn.buffCount < sizeof(int))
+            {
+                return;
+            }
+            Array.Copy(conn.readBuff, conn.lenBytes,sizeof(int));
+            conn.msgLength = BitConverter.ToInt32(conn.lenBytes, 0);
+            if(conn.buffCount < conn.msgLength + sizeof(int))
+            {
+                return;
+            }
+            string str = Encoding.UTF8.GetString(conn.readBuff, sizeof(int), conn.msgLength);
+            Console.WriteLine("收到消息 [" + conn.GetAdress() + "] " + str);
+            Send(conn, str);
+
+            int count = conn.buffCount - conn.msgLength - sizeof(int);
+            Array.Copy(conn.readBuff, sizeof(int) + conn.msgLength, conn.readBuff, 0, count);
+            conn.buffCount = count;
+            if(conn.buffCount > 0)
+            {
+                ProcessData(conn);
+            }
+        }
+
+        public void Send(Conn conn, string str)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(str);
+            byte[] length = BitConverter.GetBytes(bytes.Length);
+            byte[] sendbuff = length.Concat(bytes).ToArray();
             try
             {
-                int count = conn.socket.EndReceive(ar);
-                if (count <= 0)
+                for (int i = 0; i < conns.Length; i++)
                 {
-                    Console.WriteLine("收到 [" + conn.GetAdress() + "] 断开连接");
-                    conn.Close();
-                    return;
+                    if (conns[i] == null || conns[i].isUse == false)
+                    {
+                        continue;
+                    }
+                    Console.WriteLine("转播消息给 " + conns[i].GetAdress());
+                    conns[i].socket.Send(sendbuff, 0, sendbuff.Length, SocketFlags.None);
                 }
-                string str = Encoding.UTF8.GetString(conn.readBuff, 0, count);
-                Console.WriteLine("收到 [" + conn.GetAdress() + "] 数据:" + str);
-
-
-                HandleMsg(conn, str);
-
-                conn.socket.BeginReceive(conn.readBuff, conn.buffCount, conn.BuffRemain(), SocketFlags.None, ReceiveCb, conn);
             }
             catch (Exception e)
             {
-                Console.WriteLine("[" + conn.GetAdress() + "] 断开连接" + e.Message);
-                conn.Close();
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -173,6 +222,20 @@ namespace YuangungunServer
                 }
                 Console.WriteLine("转播消息给 " + conns[i].GetAdress());
                 conns[i].socket.Send(bytes);
+            }
+        }
+
+        public void Close()
+        {
+            for(int i = 0;i < conns.Length; i++)
+            {
+                Conn conn = conns[i];
+                if (conn == null) continue;
+                if (!conn.isUse) continue;
+                lock (conn)
+                {
+                    conn.Close();
+                }
             }
         }
     }
